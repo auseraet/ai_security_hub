@@ -1,0 +1,18 @@
+---
+applyTo: "**/*.sh,**/*.bash,**/*.zsh,**/*.ksh,**/*.ps1,**/*.psm1,**/*.bat,**/*.cmd"
+---
+
+# Shell and PowerShell security
+
+- Prefer a non-shell implementation for complex parsing, security decisions, or untrusted input. Shell quoting is context-sensitive and easy to get wrong.
+- Keep commands fixed and pass data as distinct arguments. In POSIX shell, quote every expansion unless deliberate splitting is required; use arrays in Bash. In PowerShell, avoid `Invoke-Expression` and constructed script blocks.
+- Never run `eval`, `sh -c`, `bash -c`, `cmd /c`, `powershell -Command`, or an interpreter over untrusted data.
+- Validate options and identifiers with a positive policy and use `--` before filename operands where supported. Reject newline/control characters where they can alter a command or config.
+- Use strict error handling appropriate to the shell and check every security-relevant command result. Design pipelines so an early failure cannot be hidden by a later successful stage.
+- Create temporary files/directories with secure platform APIs, restrictive permissions, and cleanup traps. Do not use predictable paths or follow unexpected symlinks.
+- Never embed or print secrets, pass them on command lines when a protected stdin/file descriptor is available, or enable command tracing while secrets are in scope.
+- Download only over verified TLS from a fixed trusted origin, verify a pinned checksum/signature, and save before execution. Never use `curl ... | sh` or disable certificate checks.
+- Avoid broad recursive permission/ownership changes and destructive commands with globs, unresolved variables, or unvalidated paths. Resolve and verify the exact target first.
+- Preserve least privilege; do not use `sudo`, administrator elevation, disabled execution policy, or world-writable permissions as a convenience.
+- In PowerShell, use typed parameters, `-LiteralPath`, `Start-Process -ArgumentList` carefully, and `ConvertFrom-Json`/structured APIs instead of parsing executable text.
+- Redact command output and errors before logging; do not expose environment dumps, tokens, private paths, or secret-bearing process arguments.

@@ -1,0 +1,16 @@
+---
+applyTo: "**/config/routes.rb,**/app/controllers/**/*.rb,**/app/models/**/*.rb,**/app/jobs/**/*.rb,**/app/views/**/*.erb"
+---
+
+# Ruby on Rails security
+
+- Define narrow strong parameters per action. Never use `permit!`, pass raw params, or permit role, tenant, ownership, price, approval, and administrative fields for ordinary users.
+- Use Active Record binds and allowlisted sort fields. Avoid string interpolation in `where`, `order`, `joins`, `find_by_sql`, and raw fragments.
+- Preserve ERB autoescaping. Do not use `html_safe`, `raw`, or `render inline:` with untrusted content; sanitize only intentionally supported rich HTML.
+- Apply `before_action` authentication plus policy/record authorization to every protected action, including non-CRUD routes, jobs, exports, and Active Storage access.
+- Keep `protect_from_forgery` for cookie-authenticated routes. Exempt only stateless API endpoints with an equivalent token/origin design.
+- Scope record lookup to the authorized tenant/owner or authorize the loaded record. Friendly IDs and signed IDs are not a substitute for permission checks.
+- Protect `secret_key_base`, credentials master keys, database URLs, and service tokens. Do not commit decrypted credentials or expose them through logs/error pages.
+- Keep Active Storage private by default for sensitive files; authorize blob access, validate upload content, and constrain transformations.
+- Use transactions/locking and idempotency for balances, inventory, redemption, approvals, and retried jobs.
+- Keep detailed exceptions, web console, routes/debug endpoints, and sensitive cache contents out of production exposure.

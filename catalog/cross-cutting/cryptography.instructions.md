@@ -1,0 +1,18 @@
+---
+applyTo: "**/*crypto*.*,**/*encrypt*.*,**/*decrypt*.*,**/*cipher*.*,**/*hash*.*,**/*signature*.*,**/*certificate*.*,**/*keystore*.*,**/*tls*.*"
+---
+
+# Cryptography and secure communications
+
+- Use a maintained platform or organization-approved high-level cryptographic library. Do not implement primitives, protocols, padding, key derivation, certificate validation, or random generators yourself.
+- First decide whether the requirement is confidentiality, integrity/authenticity, password verification, or irreversible identifier derivation; hashing and encryption are not interchangeable.
+- Prefer authenticated encryption such as AES-GCM or ChaCha20-Poly1305. Generate a fresh nonce of the required size and guarantee nonce uniqueness for a key; authenticate relevant context as associated data.
+- Generate keys, tokens, salts, IVs, and nonces with a CSPRNG. Never use timestamps, counters alone, UUID versions not intended for secrecy, or general-purpose PRNGs for secrets.
+- Store keys in the approved secret/KMS/HSM facility, separate from encrypted data. Include key identifiers and a rotation/migration path; never log or hardcode key material.
+- Store passwords with a password KDF through a current library API: prefer Argon2id, otherwise policy-approved scrypt, bcrypt, or PBKDF2. Do not use raw SHA-2/SHA-3, fast hashes, reversible encryption, or a shared salt.
+- Use HMAC or a standard signature scheme for authenticity. Do not use an unkeyed hash as a message authentication code, and verify before processing trusted content.
+- Enforce TLS for authenticated or sensitive communications, validate hostname and certificate chain, and never disable verification. Prefer TLS 1.3 and require TLS 1.2 or newer unless an approved compatibility exception exists.
+- Let maintained TLS defaults choose current cipher suites unless the platform/security policy requires an explicit profile. Do not re-enable SSL, TLS 1.0/1.1, RC4, 3DES, export, NULL, anonymous, or static unauthenticated suites.
+- Do not add certificate pinning casually; where pinning is required, pin with backup keys and a rotation/recovery design.
+- Compare MACs, signatures, reset tokens, and other secrets using a verified constant-time API. Treat any verification/parsing error as failure.
+- Version encrypted envelopes and cryptographic parameters so algorithms and keys can migrate without losing data or accepting downgrade.

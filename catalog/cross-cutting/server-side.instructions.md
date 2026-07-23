@@ -1,0 +1,17 @@
+---
+applyTo: "**/server/**,**/backend/**,**/services/**,**/handlers/**,**/workers/**,**/consumers/**,**/processors/**"
+---
+
+# Server-side security
+
+- Parse untrusted input into a constrained type before use. Keep validation close to the trust boundary and preserve a clear flow from source through validation to sink.
+- Pass process arguments as an argument array to a fixed executable. Avoid a shell; quoting is a last resort and does not make an attacker-controlled command design safe.
+- Do not evaluate untrusted code, expressions, templates, class names, or dynamic module paths. Map allowed values to fixed operations.
+- For outbound requests, allow only required schemes and destinations. Resolve and verify the effective address, block loopback/private/link-local/metadata destinations as appropriate, constrain redirects, and apply time/size limits.
+- For file access, generate server-side names, canonicalize the final path, and verify it remains beneath the intended base. Do not rely on removing `../` or trusting a client filename.
+- Do not deserialize untrusted native object formats. Use a data-only format with schema validation and disable DTDs, external entities, remote references, and arbitrary type construction.
+- Do not trust `Host`, `Forwarded`, or `X-Forwarded-*` unless a known proxy strips and replaces them. Use configured public origins for password-reset links, redirects, cache keys, and routing.
+- Bound decompression, archive extraction, regex work, parsing depth, collection growth, concurrency, retries, and upstream response size. Prevent archive path traversal and decompression bombs.
+- Use explicit timeouts, cancellation, bounded retry with jitter, and circuit behavior for remote calls. Do not retry non-idempotent operations blindly.
+- Run with least privilege, a restrictive filesystem view, and only required network access. Do not make writable application directories executable.
+- Keep detailed errors internal and use correlation identifiers. Never return raw upstream errors, query text, stack traces, internal paths, or dependency versions.

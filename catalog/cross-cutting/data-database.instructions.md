@@ -1,0 +1,18 @@
+---
+applyTo: "**/migrations/**,**/repositories/**,**/models/**,**/entities/**,**/*repository*.*,**/*dao*.*,**/*.sql,**/*.cql,**/*.prisma"
+---
+
+# Data and database security
+
+- Use parameterized statements, safe query builders, or ORM filters for every data value. Never interpolate values into SQL, NoSQL operators, stored-procedure text, identifiers, sort expressions, or query fragments.
+- When identifiers or sort fields cannot be bound, map a small allowed external value to a fixed identifier; do not quote arbitrary client input.
+- Convert request data into an explicit data type before building a query. Reject unexpected NoSQL operators, duplicate keys, and client-controlled query objects.
+- Scope every read and write by the authenticated tenant/owner and authorization policy. Avoid fetching by a globally supplied ID and checking only that some user is logged in.
+- Use a dedicated least-privilege database identity per service and environment. The runtime identity must not be schema owner, DBA, or shared with administrators.
+- Keep credentials out of connection strings committed to source and out of errors/logs. Require encrypted transport with certificate validation.
+- Classify sensitive fields and minimize collection/retention. Use field-level application encryption or tokenization when storage/database encryption does not address the threat model.
+- Make migrations safe to replay and review destructive or privilege-widening changes. Do not seed production credentials, real personal data, or permissive default accounts.
+- Enforce integrity with database constraints in addition to application validation. Use transactions or conditional updates for multi-step security and financial invariants.
+- Protect backups, replicas, snapshots, exports, and analytics copies to the same standard as primary data. Ensure restore paths do not bypass authorization or reintroduce revoked data unexpectedly.
+- Avoid exposing sequential identifiers as a substitute for authorization. Opaque IDs can reduce enumeration but do not replace object-level checks.
+- Return only required columns and records; redact diagnostic query values and prevent formula injection when exporting untrusted values to spreadsheets.

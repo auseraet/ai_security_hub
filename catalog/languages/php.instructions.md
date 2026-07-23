@@ -1,0 +1,18 @@
+---
+applyTo: "**/*.php,**/*.phtml"
+---
+
+# PHP secure coding
+
+- Use PDO/mysqli prepared statements or framework query binding. Never concatenate request data into SQL, raw ORM expressions, identifiers, or sort clauses.
+- Do not pass untrusted data to `eval`, `assert` string evaluation, dynamic callbacks/classes, `include`/`require`, regex evaluation, or template source.
+- Avoid `unserialize` on untrusted data, even with an HMAC when gadget classes are present. Prefer schema-validated JSON; use `allowed_classes => false` only as additional protection for unavoidable legacy data.
+- Avoid shell execution. If a process is unavoidable, use a fixed executable and a library/API that separates arguments; escaping alone is fragile.
+- Use strict comparisons for tokens, hashes, and security decisions and `hash_equals` for secret comparisons. Avoid loose numeric/string coercion.
+- Map request fields explicitly. Do not use `extract`, uncontrolled `parse_str`, `$request->all()`, or empty `$guarded` on privilege-bearing models.
+- Keep automatic template escaping enabled. Avoid raw Blade/Twig/PHTML output; sanitize intentionally supported rich HTML and encode for its final context.
+- Validate upload purpose, actual content, size, and authorization; generate the stored name and keep it outside executable/web-root paths.
+- Use `password_hash`/`password_verify` with a current algorithm and rehash policy, `random_bytes` for secrets, and Sodium/OpenSSL high-level authenticated encryption with managed keys.
+- Configure sessions with secure cookie flags, strict mode, ID rotation on login, and server-side invalidation. Use framework CSRF protection for cookie-authenticated changes.
+- Do not expose `.env`, Composer metadata, backups, debug output, phpinfo, or verbose exceptions. Keep production display errors off and log redacted diagnostics.
+- Restrict outbound URL schemes/destinations and disable dangerous wrappers where not needed; do not use `file_get_contents` on arbitrary user URLs.

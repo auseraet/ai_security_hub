@@ -1,0 +1,417 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": "0.3.0",
+  "lastReviewed": "2026-07-22",
+  "presets": {
+    "baseline": [
+      "core",
+      "api",
+      "authentication",
+      "authorization-business-logic",
+      "browser-web",
+      "cryptography",
+      "data-database",
+      "dependencies",
+      "event-messaging",
+      "file-handling",
+      "logging-privacy",
+      "secrets-configuration",
+      "saas-webhooks",
+      "server-side"
+    ],
+    "web-service": [
+      "@baseline",
+      "ci-cd",
+      "containers",
+      "reverse-proxy"
+    ],
+    "cloud-service": [
+      "@baseline",
+      "ci-cd",
+      "containers",
+      "iac-cloud",
+      "kubernetes",
+      "reverse-proxy"
+    ],
+    "ai-service": [
+      "@web-service",
+      "ai-ml"
+    ],
+    "full": ["*"]
+  },
+  "modules": [
+    {
+      "id": "core",
+      "path": "core/secure-development.md",
+      "kind": "repository",
+      "group": "core",
+      "description": "Non-disruptive secure-development baseline for every repository"
+    },
+    {
+      "id": "api",
+      "path": "cross-cutting/api.instructions.md",
+      "kind": "path",
+      "group": "cross-cutting",
+      "description": "REST, GraphQL, WebSocket, protobuf, and object-level API controls"
+    },
+    {
+      "id": "authentication",
+      "path": "cross-cutting/authentication.instructions.md",
+      "kind": "path",
+      "group": "cross-cutting",
+      "description": "Passwords, MFA, sessions, JWT, OAuth/OIDC, SAML, and recovery"
+    },
+    {
+      "id": "authorization-business-logic",
+      "path": "cross-cutting/authorization-business-logic.instructions.md",
+      "kind": "path",
+      "group": "cross-cutting",
+      "description": "Object/tenant authorization, workflow invariants, races, and idempotency"
+    },
+    {
+      "id": "browser-web",
+      "path": "cross-cutting/browser-web.instructions.md",
+      "kind": "path",
+      "group": "cross-cutting",
+      "description": "XSS, CSRF, CORS, browser credentials, messaging, headers, and caching"
+    },
+    {
+      "id": "cryptography",
+      "path": "cross-cutting/cryptography.instructions.md",
+      "kind": "path",
+      "group": "cross-cutting",
+      "description": "Modern cryptography, password storage, key management, and TLS"
+    },
+    {
+      "id": "data-database",
+      "path": "cross-cutting/data-database.instructions.md",
+      "kind": "path",
+      "group": "cross-cutting",
+      "description": "Query safety, tenant scoping, database privilege, and sensitive data"
+    },
+    {
+      "id": "dependencies",
+      "path": "cross-cutting/dependencies.instructions.md",
+      "kind": "path",
+      "group": "cross-cutting",
+      "description": "Dependency provenance, pinning, vulnerable components, and SBOM coverage"
+    },
+    {
+      "id": "event-messaging",
+      "path": "cross-cutting/event-messaging.instructions.md",
+      "kind": "path",
+      "group": "cross-cutting",
+      "description": "Queues, events, message validation, replay, and idempotent consumers"
+    },
+    {
+      "id": "file-handling",
+      "path": "cross-cutting/file-handling.instructions.md",
+      "kind": "path",
+      "group": "cross-cutting",
+      "description": "Uploads, downloads, archives, content validation, and storage isolation"
+    },
+    {
+      "id": "logging-privacy",
+      "path": "cross-cutting/logging-privacy.instructions.md",
+      "kind": "path",
+      "group": "cross-cutting",
+      "description": "Safe logging, error handling, audit events, privacy, and telemetry"
+    },
+    {
+      "id": "secrets-configuration",
+      "path": "cross-cutting/secrets-configuration.instructions.md",
+      "kind": "path",
+      "group": "cross-cutting",
+      "description": "Secret injection, environment separation, client exposure, redaction, and rotation"
+    },
+    {
+      "id": "saas-webhooks",
+      "path": "cross-cutting/saas-webhooks.instructions.md",
+      "kind": "path",
+      "group": "cross-cutting",
+      "description": "SaaS OAuth, scoped integration, signed webhooks, replay, and egress"
+    },
+    {
+      "id": "server-side",
+      "path": "cross-cutting/server-side.instructions.md",
+      "kind": "path",
+      "group": "cross-cutting",
+      "description": "Command/code execution, SSRF, traversal, deserialization, and resource limits"
+    },
+    {
+      "id": "ai-ml",
+      "path": "cross-cutting/ai-ml.instructions.md",
+      "kind": "path",
+      "group": "cross-cutting",
+      "description": "LLM/ML prompt injection, RAG isolation, tool agency, output, and model supply chain",
+      "detect": {
+        "files": ["**/prompts/**", "**/rag/**", "**/*prompt*.*", "**/*embedding*.*", "**/*llm*.*"],
+        "content": [
+          {
+            "files": ["**/package.json", "**/pyproject.toml", "**/requirements*.txt", "**/pom.xml", "**/*.csproj"],
+            "needles": ["openai", "anthropic", "langchain", "llamaindex", "semantic-kernel", "transformers", "pytorch", "tensorflow"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "c-cpp",
+      "path": "languages/c-cpp.instructions.md",
+      "kind": "path",
+      "group": "language",
+      "description": "C/C++ memory safety, integer, process, filesystem, and compiler hardening",
+      "detect": {"files": ["**/*.c", "**/*.h", "**/*.cc", "**/*.cpp", "**/*.cxx", "**/*.hpp"]}
+    },
+    {
+      "id": "csharp-dotnet",
+      "path": "languages/csharp-dotnet.instructions.md",
+      "kind": "path",
+      "group": "language",
+      "description": ".NET binding, SQL, serialization, XML, Razor, crypto, and async limits",
+      "detect": {"files": ["**/*.cs", "**/*.fs", "**/*.vb", "**/*.sln"]}
+    },
+    {
+      "id": "go",
+      "path": "languages/go.instructions.md",
+      "kind": "path",
+      "group": "language",
+      "description": "Go templates, commands, SQL, RNG, SSRF, paths, races, and bounds",
+      "detect": {"files": ["**/*.go", "**/go.mod"]}
+    },
+    {
+      "id": "java-kotlin",
+      "path": "languages/java-kotlin.instructions.md",
+      "kind": "path",
+      "group": "language",
+      "description": "JVM queries, deserialization, XML, expressions, processes, and concurrency",
+      "detect": {"files": ["**/*.java", "**/*.kt", "**/*.kts", "**/*.scala", "**/*.groovy"]}
+    },
+    {
+      "id": "javascript-typescript",
+      "path": "languages/javascript-typescript.instructions.md",
+      "kind": "path",
+      "group": "language",
+      "description": "JavaScript/TypeScript runtime validation, code/DOM sinks, objects, and Node",
+      "detect": {"files": ["**/*.js", "**/*.jsx", "**/*.mjs", "**/*.cjs", "**/*.ts", "**/*.tsx", "**/package.json"]}
+    },
+    {
+      "id": "php",
+      "path": "languages/php.instructions.md",
+      "kind": "path",
+      "group": "language",
+      "description": "PHP queries, object loading, inclusion, coercion, output, sessions, and files",
+      "detect": {"files": ["**/*.php", "**/composer.json"]}
+    },
+    {
+      "id": "python",
+      "path": "languages/python.instructions.md",
+      "kind": "path",
+      "group": "language",
+      "description": "Python execution, serialization, subprocess, SQL, templates, URLs, and limits",
+      "detect": {"files": ["**/*.py", "**/pyproject.toml", "**/requirements*.txt"]}
+    },
+    {
+      "id": "ruby",
+      "path": "languages/ruby.instructions.md",
+      "kind": "path",
+      "group": "language",
+      "description": "Ruby queries, templates, native serialization, dispatch, commands, and records",
+      "detect": {"files": ["**/*.rb", "**/*.rake", "**/Gemfile"]}
+    },
+    {
+      "id": "rust",
+      "path": "languages/rust.instructions.md",
+      "kind": "path",
+      "group": "language",
+      "description": "Rust errors, unsafe/FFI, queries, process, RNG, concurrency, and bounds",
+      "detect": {"files": ["**/*.rs", "**/Cargo.toml"]}
+    },
+    {
+      "id": "shell-powershell",
+      "path": "languages/shell-powershell.instructions.md",
+      "kind": "path",
+      "group": "language",
+      "description": "Shell/PowerShell injection, quoting, secrets, downloads, files, and privilege",
+      "detect": {"files": ["**/*.sh", "**/*.bash", "**/*.zsh", "**/*.ps1", "**/*.psm1", "**/*.bat", "**/*.cmd"]}
+    },
+    {
+      "id": "swift",
+      "path": "languages/swift.instructions.md",
+      "kind": "path",
+      "group": "language",
+      "description": "Swift/Apple storage, transport, links, WebViews, local auth, and privacy",
+      "detect": {"files": ["**/*.swift", "**/*.m", "**/*.mm", "**/*.xcodeproj/**"]}
+    },
+    {
+      "id": "angular",
+      "path": "frameworks/angular.instructions.md",
+      "kind": "path",
+      "group": "framework",
+      "description": "Angular sanitization bypasses, templates, XSRF, interceptors, and CSP",
+      "detect": {
+        "files": ["**/angular.json"],
+        "content": [{"files": ["**/package.json"], "needles": ["@angular/core"]}]
+      }
+    },
+    {
+      "id": "aspnet-core",
+      "path": "frameworks/aspnet-core.instructions.md",
+      "kind": "path",
+      "group": "framework",
+      "description": "ASP.NET Core models, middleware, policies, Razor, antiforgery, and Data Protection",
+      "detect": {
+        "content": [{"files": ["**/*.csproj"], "needles": ["Microsoft.NET.Sdk.Web", "Microsoft.AspNetCore"]}]
+      }
+    },
+    {
+      "id": "django-flask-fastapi",
+      "path": "frameworks/django-flask-fastapi.instructions.md",
+      "kind": "path",
+      "group": "framework",
+      "description": "Python web DTOs, authz, SQL/templates, CSRF, sessions, uploads, and debug",
+      "detect": {
+        "files": ["**/manage.py"],
+        "content": [{"files": ["**/pyproject.toml", "**/requirements*.txt", "**/Pipfile*"], "needles": ["django", "flask", "fastapi"]}]
+      }
+    },
+    {
+      "id": "express-nest",
+      "path": "frameworks/express-nest.instructions.md",
+      "kind": "path",
+      "group": "framework",
+      "description": "Express/Nest middleware, proxy, validation, CORS, sessions, guards, and limits",
+      "detect": {
+        "files": ["**/nest-cli.json"],
+        "content": [{"files": ["**/package.json"], "needles": ["express", "@nestjs/core"]}]
+      }
+    },
+    {
+      "id": "laravel-symfony",
+      "path": "frameworks/laravel-symfony.instructions.md",
+      "kind": "path",
+      "group": "framework",
+      "description": "Laravel/Symfony binding, ORM, templates, policies, sessions, jobs, and files",
+      "detect": {
+        "files": ["**/artisan"],
+        "content": [{"files": ["**/composer.json"], "needles": ["laravel/framework", "symfony/framework-bundle"]}]
+      }
+    },
+    {
+      "id": "mobile",
+      "path": "frameworks/mobile.instructions.md",
+      "kind": "path",
+      "group": "framework",
+      "description": "Android/iOS client trust, secure storage, transport, links, WebViews, and privacy",
+      "detect": {"files": ["**/AndroidManifest.xml", "**/*.xcodeproj/**", "**/*.xcworkspace/**"]}
+    },
+    {
+      "id": "next-react",
+      "path": "frameworks/next-react.instructions.md",
+      "kind": "path",
+      "group": "framework",
+      "description": "React/Next rendering, URLs, server actions, authz, serialization, secrets, and cache",
+      "detect": {
+        "content": [{"files": ["**/package.json"], "needles": ["react", "next"]}]
+      }
+    },
+    {
+      "id": "rails",
+      "path": "frameworks/rails.instructions.md",
+      "kind": "path",
+      "group": "framework",
+      "description": "Rails parameters, queries, templates, policy, CSRF, storage, and concurrency",
+      "detect": {
+        "files": ["**/config/routes.rb"],
+        "content": [{"files": ["**/Gemfile"], "needles": ["rails"]}]
+      }
+    },
+    {
+      "id": "spring",
+      "path": "frameworks/spring.instructions.md",
+      "kind": "path",
+      "group": "framework",
+      "description": "Spring DTOs, filter chains, CSRF/CORS, queries, SpEL, Actuator, and JWT",
+      "detect": {
+        "content": [{"files": ["**/pom.xml", "**/build.gradle", "**/build.gradle.kts"], "needles": ["spring-boot", "org.springframework"]}]
+      }
+    },
+    {
+      "id": "vue-nuxt",
+      "path": "frameworks/vue-nuxt.instructions.md",
+      "kind": "path",
+      "group": "framework",
+      "description": "Vue/Nuxt rendering, dynamic components, authz, public config, SSR, and sessions",
+      "detect": {
+        "files": ["**/*.vue", "**/nuxt.config.*"],
+        "content": [{"files": ["**/package.json"], "needles": ["vue", "nuxt"]}]
+      }
+    },
+    {
+      "id": "wordpress-drupal",
+      "path": "frameworks/wordpress-drupal.instructions.md",
+      "kind": "path",
+      "group": "framework",
+      "description": "WordPress/Drupal extension, capability, CSRF, query, rendering, and hardening",
+      "detect": {"files": ["**/wp-config.php", "**/wp-content/**", "**/core/lib/Drupal.php", "**/*.module"]}
+    },
+    {
+      "id": "ci-cd",
+      "path": "infrastructure/ci-cd.instructions.md",
+      "kind": "path",
+      "group": "infrastructure",
+      "description": "Pipeline triggers, tokens, injection, action provenance, OIDC, and runners",
+      "detect": {"files": ["**/.github/workflows/*.yml", "**/.github/workflows/*.yaml", "**/.gitlab-ci.yml", "**/Jenkinsfile", "**/azure-pipelines*.yml", "**/.circleci/config.yml"]}
+    },
+    {
+      "id": "containers",
+      "path": "infrastructure/containers.instructions.md",
+      "kind": "path",
+      "group": "infrastructure",
+      "description": "Container images, non-root execution, secrets, capabilities, and provenance",
+      "detect": {"files": ["**/Dockerfile", "**/Dockerfile.*", "**/*.dockerfile", "**/docker-compose*.yml", "**/compose*.yml"]}
+    },
+    {
+      "id": "iac-cloud",
+      "path": "infrastructure/iac-cloud.instructions.md",
+      "kind": "path",
+      "group": "infrastructure",
+      "description": "Terraform/cloud IAM, secrets/state, network, encryption, logging, and modules",
+      "detect": {"files": ["**/*.tf", "**/*.tfvars", "**/*.bicep", "**/Pulumi*.yaml", "**/serverless*.yml", "**/ansible/**/*.yml"]}
+    },
+    {
+      "id": "kubernetes",
+      "path": "infrastructure/kubernetes.instructions.md",
+      "kind": "path",
+      "group": "infrastructure",
+      "description": "Kubernetes pod security, service accounts, network, secrets, images, and limits",
+      "detect": {"files": ["**/Chart.yaml", "**/kustomization.yaml", "**/k8s/**/*.yaml", "**/kubernetes/**/*.yaml", "**/charts/**/*.yaml"]}
+    },
+    {
+      "id": "reverse-proxy",
+      "path": "infrastructure/reverse-proxy.instructions.md",
+      "kind": "path",
+      "group": "infrastructure",
+      "description": "TLS edge, trusted headers, SSO boundary, routes, framing, cache, and secrets",
+      "detect": {"files": ["**/nginx*.conf", "**/apache*.conf", "**/httpd*.conf", "**/haproxy*.cfg", "**/envoy*.yaml", "**/traefik*.yaml"]}
+    },
+    {
+      "id": "payment-card",
+      "path": "domains/payment-card.instructions.md",
+      "kind": "path",
+      "group": "domain",
+      "description": "Payment/card data minimization, token binding, server totals, idempotency, and callbacks",
+      "detect": {
+        "files": ["**/payment/**", "**/payments/**", "**/billing/**", "**/checkout/**", "**/*payment*.py", "**/*payment*.js", "**/*payment*.ts", "**/*payment*.java", "**/*payment*.kt", "**/*payment*.cs", "**/*payment*.php", "**/*payment*.rb", "**/*payment*.go", "**/*checkout*.py", "**/*checkout*.js", "**/*checkout*.ts", "**/*checkout*.java", "**/*checkout*.kt", "**/*checkout*.cs", "**/*checkout*.php", "**/*checkout*.rb", "**/*checkout*.go"],
+        "content": [{"files": ["**/package.json", "**/pyproject.toml", "**/requirements*.txt", "**/pom.xml", "**/composer.json", "**/*.csproj"], "needles": ["stripe", "adyen", "braintree", "worldpay", "checkout.com"]}]
+      }
+    },
+    {
+      "id": "solidity",
+      "path": "domains/solidity.instructions.md",
+      "kind": "path",
+      "group": "domain",
+      "description": "Solidity/EVM invariants, reentrancy, authorization, proxies, signatures, and oracles",
+      "detect": {"files": ["**/*.sol", "**/foundry.toml", "**/hardhat.config.*"]}
+    }
+  ]
+}

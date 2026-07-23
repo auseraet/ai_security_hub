@@ -1,0 +1,41 @@
+name: Validate Skills Hub
+
+"on":
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  bash:
+    name: Bash
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Validate catalog
+        run: ./scripts/validate.sh
+      - name: Check generated instructions
+        run: ./scripts/build.sh --target . --preset full --mode path-specific --check
+      - name: Run Bash tests
+        run: ./tests/test-build.sh
+
+  powershell:
+    name: PowerShell
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Validate catalog
+        shell: pwsh
+        run: .\scripts\validate.ps1
+      - name: Check generated instructions
+        shell: pwsh
+        run: .\scripts\build.ps1 -Target . -Preset full -Mode path-specific -Check
+      - name: Run PowerShell tests
+        shell: pwsh
+        run: .\tests\Test-Build.ps1

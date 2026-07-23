@@ -1,0 +1,18 @@
+---
+applyTo: "**/*.go"
+---
+
+# Go secure coding
+
+- Parse and validate untrusted data into explicit types. Check errors immediately; do not discard an error that affects authentication, authorization, parsing, randomness, I/O, or persistence.
+- Use `html/template` for browser HTML and keep template source static. Use `text/template` only for non-HTML formats with the correct destination escaping.
+- Use database placeholders/arguments. Never build queries with `fmt.Sprintf` or concatenate untrusted values; map dynamic identifiers to a fixed allowlist.
+- Invoke a fixed binary with `exec.CommandContext(name, args...)`; never pass untrusted data through `sh -c` or construct an executable path from input.
+- Use `crypto/rand` for keys, tokens, nonces, and secret values. `math/rand` is for simulation/non-security uses only.
+- For outbound HTTP, validate scheme/host and resolved addresses, set transport/dial/header/body timeouts, limit response bodies, and constrain redirects.
+- Canonicalize paths and verify confinement after resolution. `filepath.Join` or `Clean` alone does not prevent traversal; handle symlinks and race-sensitive creation.
+- Do not copy a `sync.Mutex` or use unsynchronized maps/shared state. Hold synchronization across the entire check-and-update invariant and run race tests for concurrent security-sensitive code.
+- Bound goroutines, channels, readers, request bodies, decompression, regex work, and retries. Propagate `context.Context` cancellation and deadlines.
+- Avoid `unsafe` and `//go:linkname`; where FFI/unsafe is required, isolate it and document pointer, lifetime, bounds, and concurrency invariants.
+- Wrap errors without exposing internal detail to clients. Use structured logging and never log credentials or full sensitive payloads.
+- Use `crypto/subtle` or a library verification function for secret comparison when necessary; verify signatures/MACs before parsing trusted content.

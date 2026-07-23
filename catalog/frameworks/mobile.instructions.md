@@ -1,0 +1,16 @@
+---
+applyTo: "**/AndroidManifest.xml,**/Info.plist,**/*.entitlements,**/network_security_config.xml,**/*Activity.kt,**/*Activity.java,**/*ViewController.swift"
+---
+
+# Mobile application security
+
+- Treat the app and device as untrusted clients. Enforce authentication, authorization, prices, entitlements, integrity decisions, and business rules on the server.
+- Store long-lived credentials only in platform secure storage (Android Keystore-backed storage/Apple Keychain). Do not put secrets in source, resources, manifests/plists, preferences, local databases, logs, backups, or screenshots.
+- Minimize exported Android components, intent filters, URL schemes, iOS entitlements, and inter-app sharing. Require explicit permission/authentication and validate every intent/deep/universal link field.
+- Keep cleartext traffic disabled and platform TLS validation enabled. Scope network-security/ATS exceptions narrowly; do not add accept-all trust managers. Pin only with a rotation and recovery design.
+- Protect WebViews: load only allowed origins, disable unnecessary JavaScript/file/content access, validate bridge messages, avoid exposing privileged native methods, and prevent arbitrary navigation.
+- Use safe local database queries and file APIs, apply OS data-protection classes/permissions, exclude sensitive files from backups, and encrypt especially sensitive data with managed keys where needed.
+- Redact notifications, logs, analytics, crash reports, clipboard, screenshots/app switcher, and accessibility exposure according to data sensitivity.
+- Use platform biometric APIs with the correct cryptographic/key access binding where needed. A local biometric result alone does not authorize a server operation.
+- Verify app links and callback state for OAuth, use authorization code with PKCE in the system browser, and prevent token leakage to custom-scheme hijackers or logs.
+- Keep release builds non-debuggable, remove test endpoints/debug menus, enable platform hardening/obfuscation as appropriate, and validate update/signing provenance.

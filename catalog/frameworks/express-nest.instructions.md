@@ -1,0 +1,16 @@
+---
+applyTo: "**/app.js,**/app.ts,**/server.js,**/server.ts,**/*.controller.ts,**/*.middleware.ts,**/*.guard.ts,**/*.gateway.ts,**/nest-cli.json"
+---
+
+# Express and NestJS security
+
+- Register trusted-proxy handling, security headers, body/parameter limits, authentication, authorization, routes, not-found, and error middleware in an order that protects every route.
+- Configure `trust proxy` only for known proxy hops; otherwise client IP, protocol, secure cookies, redirects, and rate-limit keys can be spoofed.
+- Validate `params`, `query`, `headers`, and `body` at runtime with a strict schema. Strip/reject unexpected fields and map into DTOs rather than merging into models/config.
+- Use explicit CORS origins and credentials policy. Do not use reflection callbacks that approve arbitrary `Origin` values.
+- Use `helmet` with reviewed CSP and related headers; presence of middleware is not proof the directives are safe.
+- For sessions, use a strong external secret, production store, secure/HttpOnly/SameSite cookie, ID regeneration on login, and server-side logout invalidation. Never ship MemoryStore in production.
+- Apply guards/policies globally or explicitly to every protected Nest controller/resolver/gateway. A role in a request body or decoded but unverified token is not authority.
+- Rate-limit authentication, recovery, uploads, expensive queries, and WebSocket messages using account plus trusted source/risk context.
+- Use `res.sendFile`/static serving with a fixed root and verified relative path. Do not pass a request path directly.
+- Keep error handlers last and return generic responses; do not expose stack traces, raw database errors, or framework fingerprints.

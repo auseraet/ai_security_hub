@@ -1,0 +1,16 @@
+---
+applyTo: "**/controllers/**,**/handlers/**,**/services/**,**/usecases/**,**/use-cases/**,**/domain/**,**/commands/**,**/jobs/**,**/workers/**"
+---
+
+# Authorization and business invariants
+
+- Place authorization at a server-side boundary that every protected path traverses. UI hiding, route guards, object identifiers, and successful authentication do not grant permission.
+- Default to deny. Model the action, resource, tenant, and actor explicitly; keep administrative and service identities separate from ordinary users.
+- Authorize reads and every state-changing verb independently. A scoped list/read path does not protect update, delete, cancel, approve, export, or retry paths.
+- Derive ownership and tenant scope from authenticated context and persisted relationships, not request fields. Prevent users from assigning their own role, owner, approval status, price, balance, or entitlement.
+- Revalidate workflow preconditions and security-sensitive values on the server at every transition. Do not trust hidden fields, prior UI steps, client-calculated totals, or stale state.
+- Make limits, balances, inventory, redemption, and one-time actions atomic. Use transactions, conditional writes, unique constraints, locks, or idempotency keys appropriate to the storage model.
+- Define idempotency ownership, operation binding, expiry, and response replay. Do not let a key be reused across users, tenants, endpoints, or materially different payloads.
+- Apply the same policy to alternate entry points: background jobs, imports, admin tools, GraphQL resolvers, batch endpoints, message consumers, and internal service calls.
+- Audit meaningful allow/deny decisions and privileged state changes with actor, action, target, outcome, and correlation data, without logging credentials or sensitive payloads.
+- Add negative tests for horizontal access, vertical privilege, cross-tenant access, invalid state transitions, replay, and concurrent requests.
