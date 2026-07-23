@@ -1,15 +1,15 @@
 # Developer quickstart
 
-Skills Hub gives GitHub Copilot secure-development context without requiring developers to choose a technology, module, or security checklist. Once a repository is onboarded, open it in VS Code and work normally: Copilot applies the repository-wide baseline and the path-specific instructions that match the files in the task.
+AI Security Hub gives GitHub Copilot secure-development context without requiring developers to choose a technology, module, or security checklist. Once a repository is onboarded, open it in VS Code and work normally: Copilot applies the repository-wide baseline and the path-specific instructions that match the files in the task.
 
 ## What a developer needs
 
 - A current VS Code installation with GitHub Copilot and Copilot Chat enabled.
 - A Copilot-enabled company account.
 - The application repository opened at its repository root in a trusted VS Code workspace.
-- Skills Hub files already committed under the application's `.github/` directory.
+- AI Security Hub files already committed under the application's `.github/` directory.
 
-Developers do not run the Skills Hub generator during normal work. Repository onboarding and catalog updates should be performed centrally and delivered through ordinary pull requests.
+Developers do not run the AI Security Hub generator during normal work. Repository onboarding and catalog updates should be performed centrally and delivered through ordinary pull requests.
 
 ## Start coding
 
@@ -55,7 +55,7 @@ The review agent:
 In VS Code Copilot Chat:
 
 1. Confirm that **Secure Code Review** appears in the agent picker.
-2. Type `/` and confirm that the three Skills Hub prompts appear.
+2. Type `/` and confirm that the three AI Security Hub prompts appear.
 3. Ask Copilot for a focused change in a file covered by an instruction.
 4. Expand the response's references or used-context section, when the current VS Code version exposes it.
 5. Confirm that the repository-wide instructions and the matching path-specific instruction are used or reflected in the proposed code.
@@ -66,24 +66,24 @@ The internal `secure-code-review-method` skill should not appear as a developer 
 
 ## If the repository has not been onboarded
 
-Repository owners or central automation can install Skills Hub without selecting technologies or presets. Run the appropriate generator from the application repository root:
+Repository owners or central automation can install AI Security Hub without selecting technologies or presets. Run the appropriate generator from the application repository root:
 
 ```bash
-/path/to/skills-hub/scripts/build.sh
+/path/to/ai-security-hub/scripts/build.sh
 ```
 
 ```powershell
-C:\path\to\skills-hub\scripts\build.ps1
+C:\path\to\ai-security-hub\scripts\build.ps1
 ```
 
 The no-option command uses the enforced maximum-coverage policy. Its explicit form is:
 
 ```bash
-/path/to/skills-hub/scripts/build.sh --preset full --mode path-specific
+/path/to/ai-security-hub/scripts/build.sh --preset full --mode path-specific
 ```
 
 ```powershell
-C:\path\to\skills-hub\scripts\build.ps1 -Preset full -Mode path-specific
+C:\path\to\ai-security-hub\scripts\build.ps1 -Preset full -Mode path-specific
 ```
 
 The accepted values are:
@@ -110,17 +110,17 @@ With no arguments, both implementations:
 3. Use precise `path-specific` instructions.
 4. Detect languages, frameworks, infrastructure, and conditional domains from repository evidence.
 5. Install the generated instructions and the read-only review pack.
-6. Record the selected modules and managed files in `.github/.skills-hub.json`.
+6. Record the selected modules and managed files in `.github/.ai-security-hub.json`.
 
-Review and commit the resulting `.github/` changes. Developers receive them on their next clone or pull. A central onboarding workflow or bot should perform this step across the company and open update pull requests when the Skills Hub version or repository stack changes.
+Review and commit the resulting `.github/` changes. Developers receive them on their next clone or pull. A central onboarding workflow or bot should perform this step across the company and open update pull requests when the AI Security Hub version or repository stack changes.
 
 ## Build script option reference
 
 The Bash and PowerShell implementations have equivalent generation behavior. Bash requires Bash 4+ and `jq` 1.6+; PowerShell uses native JSON support and supports Windows PowerShell 5.1+ and PowerShell 7+.
 
 ```text
-/path/to/skills-hub/scripts/build.sh [options]
-& "C:\path\to\skills-hub\scripts\build.ps1" [parameters]
+/path/to/ai-security-hub/scripts/build.sh [options]
+& "C:\path\to\ai-security-hub\scripts\build.ps1" [parameters]
 ```
 
 Module selection follows this rule:
@@ -139,13 +139,13 @@ selected modules = preset modules + automatically detected modules + explicitly 
 | Add modules | `--include IDS` | `-Include IDS` | One or more catalog module IDs. Bash accepts a comma-separated value and allows the option to be repeated. PowerShell accepts a string array or comma-separated string. Explicit inclusion overrides a detection miss. |
 | Remove modules | `--exclude IDS` | `-Exclude IDS` | One or more catalog module IDs in the same formats as `include`. Exclusion wins over the preset, detection, and inclusion. Excluding `core` is rejected. |
 | Disable detection | `--no-detect` | `-NoDetect` | Select only the preset and explicit inclusions, minus exclusions. No value is supplied to this switch. |
-| Replace unmanaged collisions | `--force` | `-Force` | Permit replacement of an existing file at a Skills Hub-managed path even when it was not generated by Skills Hub. Reconcile useful content first. No value is supplied. |
+| Replace unmanaged collisions | `--force` | `-Force` | Permit replacement of an existing file at an AI Security Hub-managed path even when it was not generated by AI Security Hub. Reconcile useful content first. No value is supplied. |
 | Preview | `--dry-run` | `-DryRun` | Print files that would be written or removed without changing the target. Cannot be combined with `check`. |
 | Drift check | `--check` | `-Check` | Make no changes; exit `0` when generated output is current, `1` when drift exists, and `2` for an input or processing error. Cannot be combined with `dry-run`. |
 | List modules | `--list` | `-List` | Print catalog module IDs, groups, descriptions, and detection status, then exit without generating files. |
-| Command help | `--help` or `-h` | No Skills Hub help parameter | Bash prints its usage and exits. For PowerShell syntax, use `Get-Help C:\path\to\skills-hub\scripts\build.ps1`; the build parameters are the ones in this table. |
+| Command help | `--help` or `-h` | No AI Security Hub help parameter | Bash prints its usage and exits. For PowerShell syntax, use `Get-Help C:\path\to\ai-security-hub\scripts\build.ps1`; the build parameters are the ones in this table. |
 
-PowerShell also exposes standard common parameters because the script is an advanced script. They do not select Skills Hub modules or output modes, and the script does not implement `-WhatIf`.
+PowerShell also exposes standard common parameters because the script is an advanced script. They do not select AI Security Hub modules or output modes, and the script does not implement `-WhatIf`.
 
 ### Preset values
 
@@ -168,7 +168,7 @@ Automatic detection remains enabled for every preset unless `no-detect` is suppl
 
 ### Accepted module IDs
 
-Use these values with `include` or `exclude`; `list` prints the authoritative catalog from the installed Skills Hub version.
+Use these values with `include` or `exclude`; `list` prints the authoritative catalog from the installed AI Security Hub version.
 
 - Core: `core`
 - Cross-cutting: `api`, `authentication`, `authorization-business-logic`, `browser-web`, `cryptography`, `data-database`, `dependencies`, `event-messaging`, `file-handling`, `logging-privacy`, `secrets-configuration`, `saas-webhooks`, `server-side`, `ai-ml`
@@ -181,33 +181,33 @@ Use these values with `include` or `exclude`; `list` prints the authoritative ca
 
 ```bash
 # Default plug-and-play generation: full + path-specific
-/path/to/skills-hub/scripts/build.sh
+/path/to/ai-security-hub/scripts/build.sh
 
 # Preview maximum path-specific coverage
-/path/to/skills-hub/scripts/build.sh --preset full --dry-run
+/path/to/ai-security-hub/scripts/build.sh --preset full --dry-run
 
 # Generate into another repository and compensate for nonstandard Spring detection
-/path/to/skills-hub/scripts/build.sh \
+/path/to/ai-security-hub/scripts/build.sh \
   --target /path/to/application \
   --preset baseline \
   --include spring
 
 # Select deterministically without repository stack detection
-/path/to/skills-hub/scripts/build.sh \
+/path/to/ai-security-hub/scripts/build.sh \
   --preset baseline \
   --no-detect \
   --include java-kotlin,spring \
   --exclude browser-web
 
 # Generate a single portable instruction file
-/path/to/skills-hub/scripts/build.sh --mode universal
+/path/to/ai-security-hub/scripts/build.sh --mode universal
 
 # Check committed generated output in CI
-/path/to/skills-hub/scripts/build.sh --check
+/path/to/ai-security-hub/scripts/build.sh --check
 
 # Inspect valid module IDs or command syntax
-/path/to/skills-hub/scripts/build.sh --list
-/path/to/skills-hub/scripts/build.sh --help
+/path/to/ai-security-hub/scripts/build.sh --list
+/path/to/ai-security-hub/scripts/build.sh --help
 ```
 
 Use `--force` only after reconciling an unmanaged file that occupies a generated path. Combine it with `--dry-run` first to inspect the planned replacement.
@@ -216,33 +216,33 @@ Use `--force` only after reconciling an unmanaged file that occupies a generated
 
 ```powershell
 # Default plug-and-play generation: full + path-specific
-& "C:\path\to\skills-hub\scripts\build.ps1"
+& "C:\path\to\ai-security-hub\scripts\build.ps1"
 
 # Preview maximum path-specific coverage
-& "C:\path\to\skills-hub\scripts\build.ps1" -Preset full -DryRun
+& "C:\path\to\ai-security-hub\scripts\build.ps1" -Preset full -DryRun
 
 # Generate into another repository and compensate for nonstandard Spring detection
-& "C:\path\to\skills-hub\scripts\build.ps1" `
+& "C:\path\to\ai-security-hub\scripts\build.ps1" `
     -Target "C:\path\to\application" `
     -Preset baseline `
     -Include "spring"
 
 # Select deterministically without repository stack detection
-& "C:\path\to\skills-hub\scripts\build.ps1" `
+& "C:\path\to\ai-security-hub\scripts\build.ps1" `
     -Preset baseline `
     -NoDetect `
     -Include "java-kotlin","spring" `
     -Exclude "browser-web"
 
 # Generate a single portable instruction file
-& "C:\path\to\skills-hub\scripts\build.ps1" -Mode universal
+& "C:\path\to\ai-security-hub\scripts\build.ps1" -Mode universal
 
 # Check committed generated output in CI
-& "C:\path\to\skills-hub\scripts\build.ps1" -Check
+& "C:\path\to\ai-security-hub\scripts\build.ps1" -Check
 
 # Inspect valid module IDs or PowerShell syntax
-& "C:\path\to\skills-hub\scripts\build.ps1" -List
-Get-Help "C:\path\to\skills-hub\scripts\build.ps1"
+& "C:\path\to\ai-security-hub\scripts\build.ps1" -List
+Get-Help "C:\path\to\ai-security-hub\scripts\build.ps1"
 ```
 
 Use `-Force` only after reconciling an unmanaged file that occupies a generated path. Combine it with `-DryRun` first to inspect the planned replacement.
@@ -250,7 +250,7 @@ Use `-Force` only after reconciling an unmanaged file that occupies a generated 
 ## Troubleshooting
 
 - **No agent or prompts:** update VS Code and the Copilot extensions, verify workspace trust and company Copilot policy, open the application repository root, and reload the VS Code window.
-- **An expected instruction is absent:** inspect `.github/.skills-hub.json`, confirm that the technology module was detected, and verify that the target file matches the instruction's `applyTo` pattern.
+- **An expected instruction is absent:** inspect `.github/.ai-security-hub.json`, confirm that the technology module was detected, and verify that the target file matches the instruction's `applyTo` pattern.
 - **Current-change review is unexpectedly large:** create a Git baseline first; the review sees the current source-control change set.
 - **The review agent asks to edit or run a terminal:** stop the action and report it as a configuration defect. The generated agent must remain read-only.
 - **A new technology was added:** rerun the generator or let central automation open an update pull request. Copilot cannot load a catalog module that has not yet been generated into the application repository.

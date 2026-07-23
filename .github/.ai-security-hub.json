@@ -1,6 +1,6 @@
 {
-  "catalogVersion": "0.3.0",
-  "generator": "Skills Hub",
+  "catalogVersion": "1.0.0",
+  "generator": "AI Security Hub",
   "managedFiles": [
     ".github/agents/secure-code-review.agent.md",
     ".github/copilot-instructions.md",

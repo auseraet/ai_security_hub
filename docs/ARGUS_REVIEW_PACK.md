@@ -1,6 +1,6 @@
 # Argus review-pack conversion
 
-Skills Hub preserves its preventive instruction catalog and adds an explicitly invoked, read-only source-code review experience for GitHub Copilot in VS Code. The review pack is not a copy of Argus and does not attempt to reproduce its autonomous VM/scanner environment.
+AI Security Hub preserves its preventive instruction catalog and adds an explicitly invoked, read-only source-code review experience for GitHub Copilot in VS Code. The review pack is not a copy of Argus and does not attempt to reproduce its autonomous VM/scanner environment.
 
 ## Source scope
 
@@ -10,7 +10,7 @@ The 22 July 2026 inventory covers the Argus skill tree at `/home/diferreira/code
 - 560 Markdown files in total;
 - 508 reference files, including 252 scenario files.
 
-Every source path was inventoried by owning skill and scenario family. Preventive lessons were already represented in the 44 Skills Hub instruction modules. This conversion adds the safe review workflow, source-to-sink reasoning, authorization/business-invariant analysis, independent-result triage, evidence gate, coverage routing, and concise reporting needed for a developer-invoked review.
+Every source path was inventoried by owning skill and scenario family. Preventive lessons were already represented in the 44 AI Security Hub instruction modules. This conversion adds the safe review workflow, source-to-sink reasoning, authorization/business-invariant analysis, independent-result triage, evidence gate, coverage routing, and concise reporting needed for a developer-invoked review.
 
 ### Scenario-family coverage
 
@@ -71,4 +71,4 @@ These exclusions keep the developer version safe, predictable, portable, and non
 | `.github/prompts/validate-security-finding.prompt.md` | Independent confirmation/rejection of one claim |
 | `.github/skills/secure-code-review-method/` | Progressively referenced workflow, coverage, evidence and report method |
 
-The agent reads the generated repository-wide instruction and all path-specific instructions matching each reviewed file. This makes the existing Skills Hub guidance the primary source of expected secure behavior rather than maintaining a competing review checklist.
+The agent reads the generated repository-wide instruction and all path-specific instructions matching each reviewed file. This makes the existing AI Security Hub guidance the primary source of expected secure behavior rather than maintaining a competing review checklist.

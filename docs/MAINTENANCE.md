@@ -8,7 +8,7 @@ Use semantic catalog versions:
 - Minor: new module, new secure default, or expanded coverage that should be reviewed by adopters.
 - Major: meaningfully stronger requirements, output-format changes, removed modules, or generator behavior requiring migration.
 
-Tag releases used by onboarding automation. Generated state records the catalog version, but repositories should also pin the Skills Hub release in their automation.
+Tag releases used by onboarding automation. Generated state records the catalog version, but repositories should also pin the AI Security Hub release in their automation.
 
 ## Review cadence
 

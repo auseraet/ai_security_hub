@@ -1,6 +1,6 @@
 # Reference baseline
 
-Skills Hub uses current internal policy direction together with maintained primary guidance. References are not injected into every generated instruction because concise implementation guidance performs better.
+AI Security Hub uses current internal policy direction together with maintained primary guidance. References are not injected into every generated instruction because concise implementation guidance performs better.
 
 - [GitHub: Adding repository custom instructions](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/add-custom-instructions/add-repository-instructions)
 - [GitHub: Adding repository instructions in an IDE](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions-in-your-ide/add-repository-instructions-in-your-ide)

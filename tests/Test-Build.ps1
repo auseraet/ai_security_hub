@@ -7,7 +7,7 @@ $ErrorActionPreference = "Stop"
 $RepoRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot ".."))
 $BuildScript = Join-Path $RepoRoot "scripts/build.ps1"
 $Engine = if (Get-Command pwsh -ErrorAction SilentlyContinue) { (Get-Command pwsh).Source } else { (Get-Command powershell.exe).Source }
-$TestRoot = Join-Path ([IO.Path]::GetTempPath()) ("skills-hub-tests-" + [Guid]::NewGuid().ToString("N"))
+$TestRoot = Join-Path ([IO.Path]::GetTempPath()) ("ai-security-hub-tests-" + [Guid]::NewGuid().ToString("N"))
 $Utf8NoBom = New-Object Text.UTF8Encoding($false)
 $Passed = 0
 $Failed = 0
@@ -35,7 +35,7 @@ function Assert-True([bool]$Condition, [string]$Message) {
 }
 
 function Read-State([string]$Target) {
-    return ConvertFrom-Json ([IO.File]::ReadAllText((Join-Path $Target ".github/.skills-hub.json")))
+    return ConvertFrom-Json ([IO.File]::ReadAllText((Join-Path $Target ".github/.ai-security-hub.json")))
 }
 
 function Run-Test([string]$Name, [scriptblock]$Body) {
@@ -125,11 +125,11 @@ try {
 
     Run-Test "local instructions" {
         $target = Join-Path $TestRoot "local"
-        Write-TestFile (Join-Path $target ".github/skills-hub-local.md") "Use the project's verify command.`n"
+        Write-TestFile (Join-Path $target ".github/ai-security-hub-local.md") "Use the project's verify command.`n"
         Assert-True ((Invoke-Build @("-Target", $target)) -eq 0) "build failed"
         $core = [IO.File]::ReadAllText((Join-Path $target ".github/copilot-instructions.md"))
         Assert-True ($core.Contains("verify command")) "local instructions not appended"
-        Assert-True (-not (@((Read-State $target).managedFiles) -contains ".github/skills-hub-local.md")) "local file became managed"
+        Assert-True (-not (@((Read-State $target).managedFiles) -contains ".github/ai-security-hub-local.md")) "local file became managed"
     }
 
     Run-Test "drift check" {

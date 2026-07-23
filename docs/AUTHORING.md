@@ -61,7 +61,7 @@ Each path module must:
 ```powershell
 .\scripts\validate.ps1
 .\tests\Test-Build.ps1
-.\scripts\build.ps1 -Target $env:TEMP\skills-hub-example -DryRun
+.\scripts\build.ps1 -Target $env:TEMP\ai-security-hub-example -DryRun
 ```
 
 Changes to generation behavior must remain equivalent in Bash and PowerShell. The cross-platform test compares their complete `.github` output byte for byte.

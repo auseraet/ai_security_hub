@@ -1,6 +1,6 @@
 # Security model and limitations
 
-Skills Hub improves the probability that Copilot proposes secure code. It does not make generated code trustworthy and is not a policy-enforcement system.
+AI Security Hub improves the probability that Copilot proposes secure code. It does not make generated code trustworthy and is not a policy-enforcement system.
 
 The generated Secure Code Review agent provides a bounded static review using read-only VS Code tools. It is a developer aid, not a replacement for Argus, independent AppSec review, scanners, tests, or runtime validation.
 
@@ -28,7 +28,7 @@ Retain independent controls:
 | Stage | Controls |
 |---|---|
 | Design | Threat modeling, data classification, architecture/security review |
-| Authoring | Skills Hub instructions, IDE linting, approved libraries/templates |
+| Authoring | AI Security Hub instructions, IDE linting, approved libraries/templates |
 | Commit/PR | Secret scanning, SAST, SCA, IaC/container scanning, policy-as-code, human review |
 | Build/release | Reproducible builds, provenance/signing, protected environments, least-privilege CI identity |
 | Runtime | Authentication/authorization, segmentation, WAF/rate controls, monitoring, detection/response |
@@ -39,7 +39,7 @@ Security gates must evaluate the resulting code/configuration, not merely confir
 ## Protecting the instructions
 
 - Review generated `.github` changes through CODEOWNERS and protected branches.
-- Run generator drift checks in CI using a pinned Skills Hub release.
+- Run generator drift checks in CI using a pinned AI Security Hub release.
 - Keep confidential implementation details and credentials out of instruction text; Copilot receives these files as context.
 - Treat catalog changes as security-code changes: require technical and developer-experience review.
 - Do not let a target repository's comments or local instructions automatically update the central catalog.

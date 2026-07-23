@@ -1,10 +1,10 @@
 # Source mapping and modernization record
 
-The source material provides direction and internal expectations. Skills Hub translates it into short preventive instructions; it does not copy documents verbatim. Current primary guidance and secure framework defaults take precedence where older material is unsafe or obsolete.
+The source material provides direction and internal expectations. AI Security Hub translates it into short preventive instructions; it does not copy documents verbatim. Current primary guidance and secure framework defaults take precedence where older material is unsafe or obsolete.
 
 ## Internal standards and guidelines
 
-| Source area | Skills Hub modules |
+| Source area | AI Security Hub modules |
 |---|---|
 | General Secure Software Development Standard | `core`, `authentication`, `authorization-business-logic`, `data-database`, `file-handling`, `logging-privacy`, `server-side` |
 | Secure Web Development / Deployment / Exposed HTTP Service | `browser-web`, `server-side`, `authentication`, `reverse-proxy`, `containers`, `kubernetes` |
@@ -48,7 +48,7 @@ For the manually invoked source-review capability, safe workflow and evidence pr
 
 ## Deliberate modernizations
 
-| Older direction | Skills Hub decision |
+| Older direction | AI Security Hub decision |
 |---|---|
 | Direct SHA-256/SHA-2 password hashing | Use a password KDF: Argon2id preferred, otherwise approved scrypt/bcrypt/PBKDF2; support rehash migration |
 | Fixed password composition, periodic rotation, and restrictive maximum length | Support long password-manager-friendly values; avoid composition/rotation unless current explicit policy requires it |

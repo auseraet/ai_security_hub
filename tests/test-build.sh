@@ -32,7 +32,7 @@ test_nested_preset() {
   local target="$TEST_ROOT/nested-preset"
   mkdir -p "$target"
   "$BUILD" --target "$target" --preset cloud-service --no-detect >/dev/null || return 1
-  local state="$target/.github/.skills-hub.json"
+  local state="$target/.github/.ai-security-hub.json"
   assert_json_module "$state" core && assert_json_module "$state" iac-cloud &&
     [[ "$(jq '.modules | length' "$state")" == "$(jq '.modules | unique | length' "$state")" ]]
 }
@@ -41,7 +41,7 @@ test_default_policy() {
   local target="$TEST_ROOT/default-policy"
   mkdir -p "$target"
   "$BUILD" --target "$target" >/dev/null || return 1
-  local state="$target/.github/.skills-hub.json"
+  local state="$target/.github/.ai-security-hub.json"
   local catalog_count
   catalog_count="$(jq '.modules | length' "$REPO_ROOT/catalog/catalog.json")"
   jq -e --argjson count "$catalog_count" \
@@ -60,7 +60,7 @@ test_detection() {
   printf '%s\n' '{"dependencies":{"react":"1","express":"1"}}' > "$target/package.json"
   printf '%s\n' 'FROM scratch' > "$target/Dockerfile"
   "$BUILD" --target "$target" --preset baseline >/dev/null || return 1
-  local state="$target/.github/.skills-hub.json"
+  local state="$target/.github/.ai-security-hub.json"
   assert_json_module "$state" javascript-typescript && assert_json_module "$state" next-react &&
     assert_json_module "$state" express-nest && assert_json_module "$state" containers
 }
@@ -82,7 +82,7 @@ test_cross_technology_detection() {
   printf '%s\n' '<?php' > "$target/cms/wp-content/plugins/example/example.php"
   printf '%s\n' '<?php' > "$target/cms/modules/custom/example/example.module"
   "$BUILD" --target "$target" --preset baseline >/dev/null || return 1
-  local state="$target/.github/.skills-hub.json"
+  local state="$target/.github/.ai-security-hub.json"
   local module_id
   for module_id in java-kotlin spring csharp-dotnet aspnet-core c-cpp php wordpress-drupal; do
     assert_json_module "$state" "$module_id" || return 1
@@ -95,7 +95,7 @@ test_hidden_workflow_detection() {
   mkdir -p "$target/.github/workflows"
   printf '%s\n' 'name: build' > "$target/.github/workflows/build.yml"
   "$BUILD" --target "$target" --preset baseline >/dev/null || return 1
-  assert_json_module "$target/.github/.skills-hub.json" ci-cd
+  assert_json_module "$target/.github/.ai-security-hub.json" ci-cd
 }
 
 test_no_self_detection() {
@@ -103,7 +103,7 @@ test_no_self_detection() {
   mkdir -p "$target/catalog/domains"
   printf '%s\n' 'payment guidance' > "$target/catalog/domains/payment-card.instructions.md"
   "$BUILD" --target "$target" --preset baseline >/dev/null || return 1
-  assert_no_json_module "$target/.github/.skills-hub.json" payment-card
+  assert_no_json_module "$target/.github/.ai-security-hub.json" payment-card
 }
 
 test_path_specific_and_review_pack() {
@@ -117,7 +117,7 @@ test_path_specific_and_review_pack() {
     assert_file "$target/.github/agents/secure-code-review.agent.md" &&
     assert_file "$target/.github/prompts/secure-code-review.prompt.md" &&
     assert_file "$target/.github/skills/secure-code-review-method/SKILL.md" &&
-    jq -e '.reviewPack == true and (.modules | index("python") != null)' "$target/.github/.skills-hub.json" >/dev/null
+    jq -e '.reviewPack == true and (.modules | index("python") != null)' "$target/.github/.ai-security-hub.json" >/dev/null
 }
 
 test_universal_mode() {
@@ -142,10 +142,10 @@ test_refuses_user_instruction() {
 test_local_instructions() {
   local target="$TEST_ROOT/local"
   mkdir -p "$target/.github"
-  printf '%s\n' "Use the project's make verify command." > "$target/.github/skills-hub-local.md"
+  printf '%s\n' "Use the project's make verify command." > "$target/.github/ai-security-hub-local.md"
   "$BUILD" --target "$target" --preset baseline >/dev/null || return 1
   assert_contains "$target/.github/copilot-instructions.md" "make verify" &&
-    jq -e '.managedFiles | index(".github/skills-hub-local.md") == null' "$target/.github/.skills-hub.json" >/dev/null
+    jq -e '.managedFiles | index(".github/ai-security-hub-local.md") == null' "$target/.github/.ai-security-hub.json" >/dev/null
 }
 
 test_unmanaged_instruction() {
@@ -175,7 +175,7 @@ test_mode_change() {
   assert_file "$target/.github/instructions/python.instructions.md" || return 1
   "$BUILD" --target "$target" --preset baseline --mode universal >/dev/null || return 1
   assert_not_exists "$target/.github/instructions/python.instructions.md" &&
-    jq -e '.mode == "universal" and .generator == "Skills Hub"' "$target/.github/.skills-hub.json" >/dev/null
+    jq -e '.mode == "universal" and .generator == "AI Security Hub"' "$target/.github/.ai-security-hub.json" >/dev/null
 }
 
 test_selection_controls() {
@@ -183,7 +183,7 @@ test_selection_controls() {
   mkdir -p "$target"
   printf '%s\n' 'print("ok")' > "$target/main.py"
   "$BUILD" --target "$target" --preset baseline --no-detect --include ai-ml --exclude browser-web >/dev/null || return 1
-  local state="$target/.github/.skills-hub.json"
+  local state="$target/.github/.ai-security-hub.json"
   assert_json_module "$state" core && assert_json_module "$state" ai-ml &&
     assert_no_json_module "$state" browser-web && assert_no_json_module "$state" python
 }

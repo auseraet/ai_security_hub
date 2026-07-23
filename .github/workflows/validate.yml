@@ -1,4 +1,4 @@
-name: Validate Skills Hub
+name: Validate AI Security Hub
 
 "on":
   pull_request:

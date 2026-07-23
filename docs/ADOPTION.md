@@ -18,24 +18,24 @@ These choices make suggestions useful enough to keep enabled. Measure false posi
 
 Developers should not select presets, technologies, or instruction modules. They should clone or pull an onboarded application repository, open its root in VS Code, and use Copilot normally. Repository-wide instructions and applicable path-specific instructions are then considered automatically by supported Copilot requests. The deeper review agent and prompts remain manually invoked to avoid adding latency to ordinary coding.
 
-The central Skills Hub repository is not inherited automatically by every application repository. Organization onboarding automation must generate and commit the customization files into each application repository. From the application repository root, the normal command requires no options:
+The central AI Security Hub repository is not inherited automatically by every application repository. Organization onboarding automation must generate and commit the customization files into each application repository. From the application repository root, the normal command requires no options:
 
 ```bash
-/path/to/skills-hub/scripts/build.sh
+/path/to/ai-security-hub/scripts/build.sh
 ```
 
 ```powershell
-C:\path\to\skills-hub\scripts\build.ps1
+C:\path\to\ai-security-hub\scripts\build.ps1
 ```
 
 Both implementations default to the current repository, the `full` preset, `path-specific` mode, and review-pack installation. Every module is therefore available without depending on stack detection. Detection remains supported for explicitly selected narrower presets; technology-specific flags are exceptions for repository owners, not part of the developer workflow.
 
 For organization-wide use:
 
-1. Pin a reviewed Skills Hub release or tag in central onboarding automation.
+1. Pin a reviewed AI Security Hub release or tag in central onboarding automation.
 2. Run the default generator against each application repository.
 3. Open a normal pull request containing the generated `.github/` files.
-4. Re-run generation when the Skills Hub version or repository stack changes.
+4. Re-run generation when the AI Security Hub version or repository stack changes.
 5. Run `--check` or `-Check` in CI to detect drift without modifying the repository.
 
 This makes the application repository self-contained for developers and allows Copilot to discover its customizations without a per-developer script, extension, or technology choice. See the [developer quickstart](../QUICKSTART.md) and [Copilot activation flow](COPILOT_FLOW.md).
@@ -82,16 +82,16 @@ Detection adds matching language, framework, infrastructure, AI, mobile, and sma
   --exclude browser-web
 ```
 
-Use `--no-detect` only when a repository owner wants a fully explicit module list. Use `--force` only after manually reconciling existing custom instructions; it allows replacing a file that Skills Hub does not own.
+Use `--no-detect` only when a repository owner wants a fully explicit module list. Use `--force` only after manually reconciling existing custom instructions; it allows replacing a file that AI Security Hub does not own.
 
-If a repository already has useful repository-wide instructions, move its project-specific build, test, architecture, and style guidance to `.github/skills-hub-local.md`. Skills Hub appends that unmanaged content to the generated `.github/copilot-instructions.md` in both modes. Do not duplicate security rules there or use it to weaken a central `MUST`; propose a catalog change or documented exception instead. Existing path-specific files with names not managed by Skills Hub remain untouched.
+If a repository already has useful repository-wide instructions, move its project-specific build, test, architecture, and style guidance to `.github/ai-security-hub-local.md`. AI Security Hub appends that unmanaged content to the generated `.github/copilot-instructions.md` in both modes. Do not duplicate security rules there or use it to weaken a central `MUST`; propose a catalog change or documented exception instead. Existing path-specific files with names not managed by AI Security Hub remain untouched.
 
 ## Keep generated output current
 
-The generator records its catalog version, selected modules, mode, and managed files in `.github/.skills-hub.json`. A CI job can check for drift without changing the repository:
+The generator records its catalog version, selected modules, mode, and managed files in `.github/.ai-security-hub.json`. A CI job can check for drift without changing the repository:
 
 ```bash
-/path/to/skills-hub/scripts/build.sh \
+/path/to/ai-security-hub/scripts/build.sh \
   --target . \
   --preset full \
   --mode path-specific \
@@ -99,10 +99,10 @@ The generator records its catalog version, selected modules, mode, and managed f
 ```
 
 ```powershell
-C:\path\to\skills-hub\scripts\build.ps1 -Target . -Preset full -Mode path-specific -Check
+C:\path\to\ai-security-hub\scripts\build.ps1 -Target . -Preset full -Mode path-specific -Check
 ```
 
-For reproducible organization-wide updates, invoke a pinned Skills Hub release/tag from the onboarding automation rather than an arbitrary working tree. Roll changes through normal pull requests and make instruction owners reviewers of `.github/copilot-instructions.md`, `.github/instructions/`, and `.github/.skills-hub.json`.
+For reproducible organization-wide updates, invoke a pinned AI Security Hub release/tag from the onboarding automation rather than an arbitrary working tree. Roll changes through normal pull requests and make instruction owners reviewers of `.github/copilot-instructions.md`, `.github/instructions/`, and `.github/.ai-security-hub.json`.
 
 ## Verify Copilot is using the files
 

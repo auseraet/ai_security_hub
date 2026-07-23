@@ -5,7 +5,7 @@ This diagram separates central repository onboarding from developer-time Copilot
 ```mermaid
 flowchart TB
     subgraph onboarding["Central onboarding or catalog update — no developer action"]
-        hub["Versioned Skills Hub catalog<br/>preventive modules + review pack"]
+        hub["Versioned AI Security Hub catalog<br/>preventive modules + review pack"]
         repository["Application repository<br/>source, manifests, configuration"]
         generator["Bash or PowerShell generator<br/>default: full + path-specific"]
         detection["Detect languages, frameworks,<br/>infrastructure, and conditional domains"]
@@ -26,7 +26,7 @@ flowchart TB
         agent["agents/secure-code-review.agent.md<br/>manual read-only reviewer"]
         skill["skills/secure-code-review-method/SKILL.md<br/>internal review procedure"]
         references["Skill references<br/>workflow, coverage, evidence, report"]
-        state[".skills-hub.json<br/>version, mode, modules, managed files"]
+        state[".ai-security-hub.json<br/>version, mode, modules, managed files"]
 
         generated --> core
         generated --> path
@@ -40,7 +40,7 @@ flowchart TB
     delivery --> open["Developer pulls and opens<br/>the repository root in VS Code"]
     open --> request{"Normal coding request<br/>or explicit security review?"}
 
-    subgraph normal["Normal coding — automatic, no Skills Hub command"]
+    subgraph normal["Normal coding — automatic, no AI Security Hub command"]
         coding["Copilot receives the request<br/>and relevant file context"]
         matcher["Evaluate path instruction<br/>applyTo globs against task files"]
         codingContext["Injected request context:<br/>repository baseline + matching path instructions"]
@@ -101,7 +101,7 @@ flowchart TB
 
 ## Important boundaries
 
-- The central Skills Hub repository is not automatically visible to Copilot in every application. Generated customization files must be delivered into each application repository, normally by central automation and a pull request.
+- The central AI Security Hub repository is not automatically visible to Copilot in every application. Generated customization files must be delivered into each application repository, normally by central automation and a pull request.
 - Automatic stack detection happens when the generator runs. If a repository later adds a technology, rerun the generator so its module becomes available.
 - At request time, Copilot uses the generated repository-wide instruction and applicable path modules. Developers do not choose the technology manually.
 - Prompts are entry points, not passive policy. They invoke the read-only agent only when a developer asks for a deeper review.
