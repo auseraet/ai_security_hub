@@ -1,6 +1,26 @@
 # GitHub Copilot activation flow
 
-This diagram separates central repository onboarding from developer-time Copilot behavior. Technology selection is deterministic during generation; instruction applicability is automatic during a supported Copilot request; the deeper source-code review workflow remains explicitly developer-invoked.
+AI Security Hub can arrive through a VS Code agent plugin or generated repository files. In both cases, instruction applicability is automatic during supported Copilot requests and the deeper source-code review workflow remains explicitly developer-invoked.
+
+## VS Code plugin flow
+
+```mermaid
+flowchart LR
+    sources["Catalog + review pack + hook source"] --> build["Build versioned plugin"]
+    build --> install["Install from Git, marketplace, or local bundle"]
+    install --> rules["Baseline + matching applyTo rules"]
+    install --> session["New Local session"]
+    session --> reminder["SessionStart security reminder"]
+    install --> manual["Developer selects review agent or command"]
+    manual --> skill["Read-only review using packaged skill"]
+    skill --> report["Evidence-backed findings in chat"]
+```
+
+The plugin is installed outside application repositories and can be enabled globally or per workspace. Its hook prints a fixed reminder; it does not start a review or run project tools. See [plugin installation and verification](PLUGIN.md).
+
+## Repository-copy flow
+
+The following diagram separates central repository onboarding from developer-time behavior. Technology selection happens during generation.
 
 ```mermaid
 flowchart TB

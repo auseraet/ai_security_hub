@@ -1,0 +1,26 @@
+image: node:22-bookworm
+
+stages: [validation]
+
+plugin-validate:
+  stage: validation
+  script:
+    - npm ci --ignore-scripts
+    - npm run build
+    - npm run validate
+    - npm test
+    - git diff --exit-code -- agents skills com.github.copilot plugins claude-plugins .github/plugin .claude-plugin
+    - test -z "$(git ls-files --others --exclude-standard -- agents skills com.github.copilot plugins claude-plugins .github/plugin .claude-plugin)"
+    - npm run package
+  artifacts:
+    paths: [dist/]
+
+plugin-version-check:
+  stage: validation
+  variables:
+    GIT_DEPTH: '0'
+  script:
+    - npm ci --ignore-scripts
+    - npm run plugin:check-versions
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'

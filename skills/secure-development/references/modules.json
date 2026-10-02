@@ -1,0 +1,266 @@
+[
+  {
+    "id": "core",
+    "description": "Non-disruptive secure-development baseline for every repository",
+    "applyTo": "**",
+    "path": "references/core.instructions.md"
+  },
+  {
+    "id": "api",
+    "description": "REST, GraphQL, WebSocket, protobuf, and object-level API controls",
+    "applyTo": "**/api/**,**/apis/**,**/controllers/**,**/routes/**,**/resolvers/**,**/*.graphql,**/*.graphqls,**/*.proto,**/openapi*.yaml,**/openapi*.yml,**/openapi*.json",
+    "path": "references/api.instructions.md"
+  },
+  {
+    "id": "authentication",
+    "description": "Passwords, MFA, sessions, JWT, OAuth/OIDC, SAML, and recovery",
+    "applyTo": "**/auth/**,**/authentication/**,**/identity/**,**/security/**,**/*auth*.*,**/*login*.*,**/*session*.*,**/*oauth*.*,**/*oidc*.*,**/*saml*.*,**/*webauthn*.*",
+    "path": "references/authentication.instructions.md"
+  },
+  {
+    "id": "authorization-business-logic",
+    "description": "Object/tenant authorization, workflow invariants, races, and idempotency",
+    "applyTo": "**/controllers/**,**/handlers/**,**/services/**,**/usecases/**,**/use-cases/**,**/domain/**,**/commands/**,**/jobs/**,**/workers/**",
+    "path": "references/authorization-business-logic.instructions.md"
+  },
+  {
+    "id": "browser-web",
+    "description": "XSS, CSRF, CORS, browser credentials, messaging, headers, and caching",
+    "applyTo": "**/*.html,**/*.htm,**/*.jsx,**/*.tsx,**/*.vue,**/*.svelte,**/templates/**,**/views/**,**/public/**",
+    "path": "references/browser-web.instructions.md"
+  },
+  {
+    "id": "cryptography",
+    "description": "Modern cryptography, password storage, key management, and TLS",
+    "applyTo": "**/*crypto*.*,**/*encrypt*.*,**/*decrypt*.*,**/*cipher*.*,**/*hash*.*,**/*signature*.*,**/*certificate*.*,**/*keystore*.*,**/*tls*.*",
+    "path": "references/cryptography.instructions.md"
+  },
+  {
+    "id": "data-database",
+    "description": "Query safety, tenant scoping, database privilege, and sensitive data",
+    "applyTo": "**/migrations/**,**/repositories/**,**/models/**,**/entities/**,**/*repository*.*,**/*dao*.*,**/*.sql,**/*.cql,**/*.prisma",
+    "path": "references/data-database.instructions.md"
+  },
+  {
+    "id": "dependencies",
+    "description": "Dependency provenance, pinning, vulnerable components, and SBOM coverage",
+    "applyTo": "**/package.json,**/package-lock.json,**/yarn.lock,**/pnpm-lock.yaml,**/requirements*.txt,**/pyproject.toml,**/poetry.lock,**/Pipfile*,**/pom.xml,**/build.gradle*,**/gradle.lockfile,**/go.mod,**/go.sum,**/Cargo.toml,**/Cargo.lock,**/Gemfile*,**/composer.json,**/composer.lock,**/*.csproj,**/packages.lock.json,**/Package.swift,**/Package.resolved,**/mix.exs,**/mix.lock",
+    "path": "references/dependencies.instructions.md"
+  },
+  {
+    "id": "event-messaging",
+    "description": "Queues, events, message validation, replay, and idempotent consumers",
+    "applyTo": "**/consumers/**,**/producers/**,**/events/**,**/messaging/**,**/queues/**,**/*consumer*.*,**/*producer*.*,**/*message*.*,**/*event*.*",
+    "path": "references/event-messaging.instructions.md"
+  },
+  {
+    "id": "file-handling",
+    "description": "Uploads, downloads, archives, content validation, and storage isolation",
+    "applyTo": "**/upload/**,**/uploads/**,**/files/**,**/storage/**,**/*upload*.*,**/*download*.*,**/*archive*.*,**/*attachment*.*",
+    "path": "references/file-handling.instructions.md"
+  },
+  {
+    "id": "logging-privacy",
+    "description": "Safe logging, error handling, audit events, privacy, and telemetry",
+    "applyTo": "**/*log*.*,**/*audit*.*,**/*telemetry*.*,**/*metric*.*,**/*trace*.*,**/*error*.*,**/*exception*.*,**/*privacy*.*",
+    "path": "references/logging-privacy.instructions.md"
+  },
+  {
+    "id": "secrets-configuration",
+    "description": "Secret injection, environment separation, client exposure, redaction, and rotation",
+    "applyTo": "**/.env*,**/*secret*.*,**/*credential*.*,**/*config*.yml,**/*config*.yaml,**/*config*.json,**/appsettings*.json,**/application*.properties,**/application*.yml,**/application*.yaml,**/settings.py,**/*.tfvars",
+    "path": "references/secrets-configuration.instructions.md"
+  },
+  {
+    "id": "saas-webhooks",
+    "description": "SaaS OAuth, scoped integration, signed webhooks, replay, and egress",
+    "applyTo": "**/integrations/**,**/webhooks/**,**/*webhook*.*,**/*callback*.*,**/*integration*.*,**/*connector*.*,**/*saas*.*",
+    "path": "references/saas-webhooks.instructions.md"
+  },
+  {
+    "id": "server-side",
+    "description": "Command/code execution, SSRF, traversal, deserialization, and resource limits",
+    "applyTo": "**/server/**,**/backend/**,**/services/**,**/handlers/**,**/workers/**,**/consumers/**,**/processors/**",
+    "path": "references/server-side.instructions.md"
+  },
+  {
+    "id": "ai-ml",
+    "description": "LLM/ML prompt injection, RAG isolation, tool agency, output, and model supply chain",
+    "applyTo": "**/ai/**,**/ml/**,**/models/**,**/prompts/**,**/agents/**,**/rag/**,**/*prompt*.*,**/*embedding*.*,**/*llm*.*,**/*.ipynb",
+    "path": "references/ai-ml.instructions.md"
+  },
+  {
+    "id": "c-cpp",
+    "description": "C/C++ memory safety, integer, process, filesystem, and compiler hardening",
+    "applyTo": "**/*.c,**/*.h,**/*.cc,**/*.cpp,**/*.cxx,**/*.hh,**/*.hpp,**/*.hxx",
+    "path": "references/c-cpp.instructions.md"
+  },
+  {
+    "id": "csharp-dotnet",
+    "description": ".NET binding, SQL, serialization, XML, Razor, crypto, and async limits",
+    "applyTo": "**/*.cs,**/*.fs,**/*.fsx,**/*.vb",
+    "path": "references/csharp-dotnet.instructions.md"
+  },
+  {
+    "id": "go",
+    "description": "Go templates, commands, SQL, RNG, SSRF, paths, races, and bounds",
+    "applyTo": "**/*.go",
+    "path": "references/go.instructions.md"
+  },
+  {
+    "id": "java-kotlin",
+    "description": "JVM queries, deserialization, XML, expressions, processes, and concurrency",
+    "applyTo": "**/*.java,**/*.kt,**/*.kts,**/*.scala,**/*.groovy",
+    "path": "references/java-kotlin.instructions.md"
+  },
+  {
+    "id": "javascript-typescript",
+    "description": "JavaScript/TypeScript runtime validation, code/DOM sinks, objects, and Node",
+    "applyTo": "**/*.js,**/*.jsx,**/*.mjs,**/*.cjs,**/*.ts,**/*.tsx,**/*.mts,**/*.cts",
+    "path": "references/javascript-typescript.instructions.md"
+  },
+  {
+    "id": "php",
+    "description": "PHP queries, object loading, inclusion, coercion, output, sessions, and files",
+    "applyTo": "**/*.php,**/*.phtml",
+    "path": "references/php.instructions.md"
+  },
+  {
+    "id": "python",
+    "description": "Python execution, serialization, subprocess, SQL, templates, URLs, and limits",
+    "applyTo": "**/*.py,**/*.pyi",
+    "path": "references/python.instructions.md"
+  },
+  {
+    "id": "ruby",
+    "description": "Ruby queries, templates, native serialization, dispatch, commands, and records",
+    "applyTo": "**/*.rb,**/*.rake,**/*.erb",
+    "path": "references/ruby.instructions.md"
+  },
+  {
+    "id": "rust",
+    "description": "Rust errors, unsafe/FFI, queries, process, RNG, concurrency, and bounds",
+    "applyTo": "**/*.rs",
+    "path": "references/rust.instructions.md"
+  },
+  {
+    "id": "shell-powershell",
+    "description": "Shell/PowerShell injection, quoting, secrets, downloads, files, and privilege",
+    "applyTo": "**/*.sh,**/*.bash,**/*.zsh,**/*.ksh,**/*.ps1,**/*.psm1,**/*.bat,**/*.cmd",
+    "path": "references/shell-powershell.instructions.md"
+  },
+  {
+    "id": "swift",
+    "description": "Swift/Apple storage, transport, links, WebViews, local auth, and privacy",
+    "applyTo": "**/*.swift,**/*.m,**/*.mm",
+    "path": "references/swift.instructions.md"
+  },
+  {
+    "id": "angular",
+    "description": "Angular sanitization bypasses, templates, XSRF, interceptors, and CSP",
+    "applyTo": "**/*.component.ts,**/*.directive.ts,**/*.module.ts,**/*.guard.ts,**/*.interceptor.ts,**/*.component.html,**/angular.json",
+    "path": "references/angular.instructions.md"
+  },
+  {
+    "id": "aspnet-core",
+    "description": "ASP.NET Core models, middleware, policies, Razor, antiforgery, and Data Protection",
+    "applyTo": "**/*Controller.cs,**/*Endpoint.cs,**/*Hub.cs,**/Program.cs,**/Startup.cs,**/appsettings*.json,**/*.cshtml",
+    "path": "references/aspnet-core.instructions.md"
+  },
+  {
+    "id": "django-flask-fastapi",
+    "description": "Python web DTOs, authz, SQL/templates, CSRF, sessions, uploads, and debug",
+    "applyTo": "**/settings.py,**/urls.py,**/views.py,**/serializers.py,**/schemas.py,**/routers.py,**/wsgi.py,**/asgi.py",
+    "path": "references/django-flask-fastapi.instructions.md"
+  },
+  {
+    "id": "express-nest",
+    "description": "Express/Nest middleware, proxy, validation, CORS, sessions, guards, and limits",
+    "applyTo": "**/app.js,**/app.ts,**/server.js,**/server.ts,**/*.controller.ts,**/*.middleware.ts,**/*.guard.ts,**/*.gateway.ts,**/nest-cli.json",
+    "path": "references/express-nest.instructions.md"
+  },
+  {
+    "id": "laravel-symfony",
+    "description": "Laravel/Symfony binding, ORM, templates, policies, sessions, jobs, and files",
+    "applyTo": "**/routes/web.php,**/routes/api.php,**/*Controller.php,**/*Request.php,**/*Policy.php,**/config/packages/**,**/templates/**/*.twig,**/resources/views/**/*.blade.php",
+    "path": "references/laravel-symfony.instructions.md"
+  },
+  {
+    "id": "mobile",
+    "description": "Android/iOS client trust, secure storage, transport, links, WebViews, and privacy",
+    "applyTo": "**/AndroidManifest.xml,**/Info.plist,**/*.entitlements,**/network_security_config.xml,**/*Activity.kt,**/*Activity.java,**/*ViewController.swift",
+    "path": "references/mobile.instructions.md"
+  },
+  {
+    "id": "next-react",
+    "description": "React/Next rendering, URLs, server actions, authz, serialization, secrets, and cache",
+    "applyTo": "**/*.jsx,**/*.tsx,**/next.config.js,**/next.config.mjs,**/next.config.ts,**/middleware.ts,**/middleware.js,**/pages/api/**,**/app/api/**",
+    "path": "references/next-react.instructions.md"
+  },
+  {
+    "id": "rails",
+    "description": "Rails parameters, queries, templates, policy, CSRF, storage, and concurrency",
+    "applyTo": "**/config/routes.rb,**/app/controllers/**/*.rb,**/app/models/**/*.rb,**/app/jobs/**/*.rb,**/app/views/**/*.erb",
+    "path": "references/rails.instructions.md"
+  },
+  {
+    "id": "spring",
+    "description": "Spring DTOs, filter chains, CSRF/CORS, queries, SpEL, Actuator, and JWT",
+    "applyTo": "**/*Controller.java,**/*Controller.kt,**/*Security*.java,**/*Security*.kt,**/application*.yml,**/application*.yaml,**/application*.properties,**/templates/**/*.html",
+    "path": "references/spring.instructions.md"
+  },
+  {
+    "id": "vue-nuxt",
+    "description": "Vue/Nuxt rendering, dynamic components, authz, public config, SSR, and sessions",
+    "applyTo": "**/*.vue,**/nuxt.config.js,**/nuxt.config.ts,**/plugins/**/*.js,**/plugins/**/*.ts,**/middleware/**/*.js,**/middleware/**/*.ts",
+    "path": "references/vue-nuxt.instructions.md"
+  },
+  {
+    "id": "wordpress-drupal",
+    "description": "WordPress/Drupal extension, capability, CSRF, query, rendering, and hardening",
+    "applyTo": "**/wp-config.php,**/wp-content/**/*.php,**/*.module,**/*.theme,**/*.install,**/drupal*/**/*.php",
+    "path": "references/wordpress-drupal.instructions.md"
+  },
+  {
+    "id": "ci-cd",
+    "description": "Pipeline triggers, tokens, injection, action provenance, OIDC, and runners",
+    "applyTo": "**/.github/workflows/*.yml,**/.github/workflows/*.yaml,**/.gitlab-ci.yml,**/Jenkinsfile,**/azure-pipelines*.yml,**/azure-pipelines*.yaml,**/.circleci/config.yml,**/bitbucket-pipelines.yml",
+    "path": "references/ci-cd.instructions.md"
+  },
+  {
+    "id": "containers",
+    "description": "Container images, non-root execution, secrets, capabilities, and provenance",
+    "applyTo": "**/Dockerfile,**/Dockerfile.*,**/*.dockerfile,**/docker-compose*.yml,**/docker-compose*.yaml,**/compose*.yml,**/compose*.yaml,**/.dockerignore",
+    "path": "references/containers.instructions.md"
+  },
+  {
+    "id": "iac-cloud",
+    "description": "Terraform/cloud IAM, secrets/state, network, encryption, logging, and modules",
+    "applyTo": "**/*.tf,**/*.tfvars,**/*.tf.json,**/template*.yaml,**/template*.yml,**/cloudformation*.yaml,**/cloudformation*.yml,**/*.bicep,**/Pulumi*.yaml,**/serverless*.yml,**/serverless*.yaml,**/ansible/**/*.yml,**/ansible/**/*.yaml",
+    "path": "references/iac-cloud.instructions.md"
+  },
+  {
+    "id": "kubernetes",
+    "description": "Kubernetes pod security, service accounts, network, secrets, images, and limits",
+    "applyTo": "**/k8s/**/*.yml,**/k8s/**/*.yaml,**/kubernetes/**/*.yml,**/kubernetes/**/*.yaml,**/charts/**/*.yaml,**/templates/**/*.yaml,**/Chart.yaml,**/values*.yaml",
+    "path": "references/kubernetes.instructions.md"
+  },
+  {
+    "id": "reverse-proxy",
+    "description": "TLS edge, trusted headers, SSO boundary, routes, framing, cache, and secrets",
+    "applyTo": "**/nginx*.conf,**/apache*.conf,**/httpd*.conf,**/haproxy*.cfg,**/envoy*.yaml,**/envoy*.yml,**/traefik*.yaml,**/traefik*.yml,**/*vhost*.conf",
+    "path": "references/reverse-proxy.instructions.md"
+  },
+  {
+    "id": "payment-card",
+    "description": "Payment/card data minimization, token binding, server totals, idempotency, and callbacks",
+    "applyTo": "**/payment/**,**/payments/**,**/billing/**,**/checkout/**,**/*payment*.*,**/*checkout*.*,**/*card*.*",
+    "path": "references/payment-card.instructions.md"
+  },
+  {
+    "id": "solidity",
+    "description": "Solidity/EVM invariants, reentrancy, authorization, proxies, signatures, and oracles",
+    "applyTo": "**/*.sol",
+    "path": "references/solidity.instructions.md"
+  }
+]

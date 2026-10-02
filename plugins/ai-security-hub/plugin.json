@@ -1,0 +1,26 @@
+{
+  "name": "ai-security-hub",
+  "version": "1.1.0",
+  "description": "Secure-development instructions and a read-only security review agent, commands, and skill for GitHub Copilot.",
+  "author": {
+    "name": "AI Security Hub maintainers"
+  },
+  "repository": "https://github.com/auseraet/ai_security_hub",
+  "homepage": "https://github.com/auseraet/ai_security_hub/blob/main/docs/PLUGIN.md",
+  "keywords": [
+    "security",
+    "secure-development",
+    "code-review",
+    "copilot"
+  ],
+  "agents": [
+    "./agents/secure-code-review.md"
+  ],
+  "skills": [
+    "./skills/secure-development/",
+    "./skills/secure-code-review-method/"
+  ],
+  "commands": "./commands/",
+  "rules": "./rules/",
+  "hooks": "./hooks/hooks.json"
+}

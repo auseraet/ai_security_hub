@@ -1,0 +1,22 @@
+{
+  "name": "ai-security-hub-marketplace",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Build and validate AI Security Hub packages for Copilot and Claude Code.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node scripts/plugin.mjs build",
+    "validate": "node scripts/plugin.mjs check && node scripts/validate-plugins.mjs",
+    "test": "node --test tests/plugin.test.mjs tests/marketplace.test.mjs tests/plugin-versions.test.mjs",
+    "claude:test": "node --test tests/marketplace.test.mjs",
+    "plugin:check-versions": "node scripts/check-plugin-versions.mjs",
+    "plugin:precommit": "node scripts/plugin-precommit.mjs",
+    "package": "node scripts/plugin.mjs package"
+  },
+  "dependencies": {
+    "js-yaml": "4.3.2"
+  }
+}

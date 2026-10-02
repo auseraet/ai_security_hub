@@ -66,6 +66,8 @@ Each path module must:
 
 Changes to generation behavior must remain equivalent in Bash and PowerShell. The cross-platform test compares their complete `.github` output byte for byte.
 
+The native VS Code, Copilot, and Claude packages share the same catalog and review pack. Install build dependencies with `npm ci --ignore-scripts`, run `npm run build` after source edits, and commit all generated assets and marketplaces. `npm run validate` detects drift; `npm test` verifies packaging, relocated links, permissions, command arguments, rule applicability, hooks, and release gates. See [plugin authoring and distribution](PLUGIN.md).
+
 ## Review checklist
 
 - Is every absolute statement true in the declared path scope?

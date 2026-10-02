@@ -1,12 +1,53 @@
 # AI Security Hub
 
-AI Security Hub is a central catalog of secure-development instructions for GitHub Copilot. It turns company security standards and source-review knowledge into concise, preventive guidance that Copilot considers while developers work. Developers do not need to invoke an instruction manually.
+AI Security Hub is a versioned security-customization marketplace for GitHub Copilot in VS Code, Copilot CLI, and Claude Code. One source catalog builds client-specific agents, skills, instructions, review commands, and hooks that can be installed across projects. VS Code applies native instruction patterns; other clients also receive a preventive skill with the same security content.
 
 The catalog is intentionally adoption-oriented. It uses `MUST` only for controls that prevent a clear, high-confidence vulnerability, `SHOULD` for secure defaults, and conditional language where the correct control depends on architecture. Instructions ask Copilot to preserve intended behavior and avoid unrelated rewrites.
 
 Developers should begin with the [developer quickstart](QUICKSTART.md). The [Copilot activation flow](docs/COPILOT_FLOW.md) shows exactly when instructions, prompts, the review agent, its internal skill, and read-only tools are used.
 
+## Install the plugins
+
+The repository follows the company project's two-marketplace distribution model. Copilot packages live under `plugins/`, Claude packages under `claude-plugins/`, and each client has its own marketplace manifest. A native VS Code Agent Plugins 1.0 variant remains available at the repository root.
+
+| Client | Package | Marketplace |
+|---|---|---|
+| VS Code / Copilot CLI | `plugins/ai-security-hub` | `ai-security-hub-marketplace` |
+| Claude Code | `claude-plugins/ai-security-hub` | `ai-security-hub-claude` |
+
+See the [installation guide](docs/PLUGIN.md) for commands for each client, local testing, updates, and company-marketplace integration.
+
+Use a current VS Code release supporting Agent Plugins 1.0 with GitHub Copilot enabled. Register this checkout in **Preferences: Open User Settings (JSON)**:
+
+```json
+{
+  "chat.plugins.enabled": true,
+  "chat.useHooks": true,
+  "chat.pluginLocations": {
+    "/absolute/path/to/ai_security_hub": true
+  }
+}
+```
+
+Use `C:/tools/ai_security_hub` or another absolute path on Windows. Open a trusted application workspace and start a new **Local** chat session. The plugin supplies all 44 security modules, the review agent, three review commands, the internal review skill, and a session-start reminder. Enable or disable it per workspace through **Chat: Open Customizations → Plugins**.
+
+After these files are published to the remote, the repository can also be installed through **Chat: Install Plugin From Source** using `https://github.com/auseraet/ai_security_hub`, or through its included marketplace. See the [plugin installation and distribution guide](docs/PLUGIN.md) for Git installation, team recommendations, archives, updates, migration, and compatibility.
+
+Maintainers can rebuild, check, and package with Node.js 22+, npm, Git, and `tar`:
+
+```text
+npm ci --ignore-scripts
+npm run build
+npm run validate
+npm test
+npm run package
+```
+
+Archives and SHA-256 checksums for the native, Copilot, Claude, and central-integration distributions are written to `dist/`. Generated files are committed so installation needs no build. Avoid enabling multiple variants or enabling a plugin alongside the Hub's generated `.github` customizations in the same workspace.
+
 ## Repository onboarding quick start
+
+For teams that need committed `.github` files, including Copilot surfaces outside VS Code, the existing repository-copy installer remains available.
 
 For plug-and-play onboarding, run the generator from the application repository root with no options. The enforced defaults select every catalog module, use path-specific output, and install the review pack:
 
@@ -187,6 +228,11 @@ Get-Help ".\scripts\build.ps1"
 
 ## Design
 
+- `plugin.json` identifies the Agent Plugins 1.0 package and its release version.
+- `plugins/` and `claude-plugins/` contain company-style Copilot and Claude packages; `.claude-plugin/marketplace.json` registers the Claude distribution.
+- `skills/` and `com.github.copilot/` contain generated, installable customizations; `.github/plugin/marketplace.json` makes the repository a plugin marketplace.
+- `plugin/hooks/` contains the source for the session-start reminder.
+- `scripts/plugin.mjs` builds, checks, and packages the plugin using the existing catalog and review pack.
 - `catalog/core/` contains the compact baseline used in every generated repository.
 - `catalog/**.instructions.md` contains native GitHub Copilot path-specific instructions.
 - `catalog/catalog.json` defines discovery signals, presets, and output ordering.
@@ -211,6 +257,15 @@ Start with [Adoption](docs/ADOPTION.md), then read [Authoring](docs/AUTHORING.md
 Copilot instructions influence suggestions; they are not an enforcement control and can be disabled or changed in a branch. Retain branch protection, code review, SAST, SCA, secret scanning, IaC scanning, and security tests. See [Security model](docs/SECURITY_MODEL.md).
 
 ## Validation
+
+Plugin checks run identically in Bash and PowerShell after `npm ci --ignore-scripts`:
+
+```text
+npm run validate
+npm test
+```
+
+Repository installer checks:
 
 ```bash
 ./scripts/validate.sh

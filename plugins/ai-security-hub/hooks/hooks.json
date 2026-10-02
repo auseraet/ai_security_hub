@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/session-start.sh\"",
+        "windows": "powershell -NoProfile -NonInteractive -File \"${CLAUDE_PLUGIN_ROOT}/hooks/session-start.ps1\"",
+        "bash": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/session-start.sh\"",
+        "powershell": "powershell -NoProfile -NonInteractive -File \"${CLAUDE_PLUGIN_ROOT}/hooks/session-start.ps1\"",
+        "timeout": 5
+      }
+    ]
+  }
+}

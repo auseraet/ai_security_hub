@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: plugin-marketplaces
+        name: Rebuild plugin packages and marketplaces
+        entry: npm run plugin:precommit
+        language: system
+        files: '^(catalog/|review-pack/|plugin/|scripts/|docs/PLUGIN\.md|plugin\.json|package(-lock)?\.json|CHANGELOG\.md)'
+        pass_filenames: false

@@ -4,6 +4,8 @@ AI Security Hub improves the probability that Copilot proposes secure code. It d
 
 The generated Secure Code Review agent provides a bounded static review using read-only VS Code tools. It is a developer aid, not a replacement for Argus, independent AppSec review, scanners, tests, or runtime validation.
 
+The VS Code plugin packages the same instructions and review boundaries. Its `SessionStart` hook prints fixed JSON containing a security-guidance reminder; it ignores event input and neither reads nor modifies project files. The hook does not grant the review agent terminal access or invoke a review. Plugin enablement, hook settings, and workspace trust determine whether the reminder runs.
+
 ## What the catalog addresses
 
 - High-confidence insecure construction patterns before they are written.

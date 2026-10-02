@@ -2,6 +2,8 @@
 
 ## Release policy
 
+All plugin variants share the semantic release version in `plugin.json`. Bump it whenever shipped customizations change, update `CHANGELOG.md`, run `npm run build`, and commit generated output alongside source changes. After installing build dependencies with `npm ci --ignore-scripts`, run `npm run validate`, `npm test`, and `npm run plugin:check-versions -- --base origin/main`. `npm run package` creates native, Copilot, Claude, and integration archives with checksums without publishing a release. See [plugin distribution](PLUGIN.md) for installation and updates.
+
 Use semantic catalog versions:
 
 - Patch: wording, glob, detection, or non-material clarification.

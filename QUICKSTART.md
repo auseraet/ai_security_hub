@@ -1,6 +1,19 @@
 # Developer quickstart
 
-AI Security Hub gives GitHub Copilot secure-development context without requiring developers to choose a technology, module, or security checklist. Once a repository is onboarded, open it in VS Code and work normally: Copilot applies the repository-wide baseline and the path-specific instructions that match the files in the task.
+AI Security Hub gives GitHub Copilot secure-development context without requiring developers to choose a technology, module, or security checklist. Install the VS Code agent plugin once to use it across projects, or consume the generated `.github` files supplied by your repository owner.
+
+Copilot CLI and Claude Code packages are also available through separate marketplaces. Follow the [client installation guide](docs/PLUGIN.md). They receive the same policy content through a preventive skill; Claude skill activation differs from VS Code's automatic file-pattern rules. Supply a diff when the reviewer's read-only tools cannot expose current changes.
+
+## Start with the VS Code plugin
+
+1. Follow the [plugin installation guide](docs/PLUGIN.md) to register a local checkout or install from Git/the included marketplace.
+2. Open the application workspace, enable the plugin, and start a new **Local** chat session. The session-start hook reminds Copilot to use the security guidance.
+3. Code normally. The baseline and rules matching the task's files provide preventive guidance.
+4. For a deeper review, select **Secure Code Review** or choose one of the plugin's review commands from the `/` menu. The review skill remains internal to this workflow.
+
+No generator runs in the application repository. The plugin guide includes team recommendations, versioned archives, update instructions, and steps to verify that VS Code loaded the customizations.
+
+The remaining sections describe the **repository-copy installation**. If your repository already uses it, disable the plugin for that workspace until the team migrates to avoid duplicate customizations.
 
 ## What a developer needs
 

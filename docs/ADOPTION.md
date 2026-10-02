@@ -2,7 +2,9 @@
 
 ## Recommended rollout
 
-Use the centrally enforced `full` preset in `path-specific` mode for VS Code/Visual Studio and GitHub Copilot code review. This installs every catalog module while allowing `applyTo` globs to select relevant instructions at request time. Pilot it with representative teams, review suggestions and friction weekly, then expand. Use `universal` mode only for JetBrains, Xcode, or another Copilot surface that consumes a single repository-wide file.
+For VS Code, install the [AI Security Hub agent plugin](PLUGIN.md) to distribute the complete, versioned bundle across projects. It supplies every catalog module and uses `applyTo` globs to select relevant rules at request time, plus the review agent, commands, skill, and session-start reminder. Pilot it with representative teams, review suggestions and friction weekly, then expand.
+
+For committed repository instructions, use the centrally enforced `full` preset in `path-specific` mode for VS Code/Visual Studio and GitHub Copilot code review. Use `universal` mode for a Copilot surface that consumes only a single repository-wide file. The sections below describe this repository-copy distribution model; plugin installation and migration are covered in the linked guide.
 
 The adoption contract is:
 
@@ -14,7 +16,7 @@ The adoption contract is:
 
 These choices make suggestions useful enough to keep enabled. Measure false positives, unnecessary code churn, repeated developer overrides, and security defects prevented or caught in review. Refine the smallest relevant module rather than making the core baseline longer.
 
-## Plug-and-play distribution model
+## Distribution using generated repository files
 
 Developers should not select presets, technologies, or instruction modules. They should clone or pull an onboarded application repository, open its root in VS Code, and use Copilot normally. Repository-wide instructions and applicable path-specific instructions are then considered automatically by supported Copilot requests. The deeper review agent and prompts remain manually invoked to avoid adding latency to ordinary coding.
 

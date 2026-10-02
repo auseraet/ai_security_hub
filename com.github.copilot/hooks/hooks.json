@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "sh \"${PLUGIN_ROOT}/com.github.copilot/hooks/session-start.sh\"",
+        "windows": "powershell -NoProfile -NonInteractive -File \"${PLUGIN_ROOT}/com.github.copilot/hooks/session-start.ps1\"",
+        "timeout": 5
+      }
+    ]
+  }
+}
